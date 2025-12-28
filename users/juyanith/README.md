@@ -73,7 +73,7 @@ git push --force-with-lease
 Build:
 
 git switch my/k2_he
-qmk compile -kb keychron/k2_he -km juyanith
+qmk compile -kb keychron/k2_he/ansi -km juyanith
 
 git switch my/k3_max
 qmk compile -kb keychron/k3_max -km juyanith
