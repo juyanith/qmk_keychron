@@ -64,11 +64,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______),
 
 [NAV_LT] = LAYOUT_ansi_84(
-     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RGB_TOG,
-     _______,  _______,  TOG_BRP,  RUN_CNT,  STEP_OV,  STEP_IN,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
-     KC_ESC,   KC_GRV,   LINE_DN,  LINE_UP,  _______,  _______,  LOC_PRV,  KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   LOC_NXT,  _______,  _______,            _______,
+     _______,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,  _______,  RGB_TOG,
+     _______,  RE_NAME,  TOG_BRP,  RUN_CNT,  STEP_OV,  STEP_IN,  STEP_OT,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
+     KC_ESC,   KC_GRV,   LINE_DN,  LINE_UP,  _______,  _______,  _______,  KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   DOC_PRV,  DOC_NXT,  _______,            _______,
      _______,  KC_TAB,   KC_ENT,   KC_BSPC,  KC_DEL,   MV_MTCH,  WRD_PRV,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  WRD_NXT,            _______,            _______,
-     _______,  MT_UNDO,  MT_CUT,   MT_COPY,  MT_PSTE,  _______,  DOC_PRV,  MT_LBCK,  MT_CRDN,  MT_CRUP,  MT_LFWD,            DOC_NXT,            _______,  _______,
+     _______,  MT_UNDO,  MT_CUT,   MT_COPY,  MT_PSTE,  _______,  _______,  MT_LBCK,  MT_CRDN,  MT_CRUP,  MT_LFWD,            _______,            _______,  _______,
      _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______)
 };
 
