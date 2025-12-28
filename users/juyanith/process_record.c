@@ -98,6 +98,28 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
             return false;  // Skip default handling.
             break;
 
+        case LOC_PRV: // Custom: Previous location
+            if (record->event.pressed) { // On press
+                register_mods(primary_mod());
+                register_code(KC_MINS);
+            } else {                     // On release
+                unregister_code(KC_MINS);
+                unregister_mods(primary_mod());
+            }
+            return false;  // Skip default handling.
+            break;
+
+        case LOC_NXT: // Custom: Next location
+            if (record->event.pressed) { // On press
+                register_mods(primary_mod() | MOD_LSFT);
+                register_code(KC_MINS);
+            } else {                     // On release
+                unregister_code(KC_MINS);
+                unregister_mods(primary_mod() | MOD_LSFT);
+            }
+            return false;  // Skip default handling.
+            break;
+
         case LINE_DN: // Custom: Move line down
             if (record->event.pressed) { // On press
                 register_mods(MOD_LALT);
