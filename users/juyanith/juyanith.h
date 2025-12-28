@@ -1,6 +1,7 @@
 #pragma once
 
 #include QMK_KEYBOARD_H
+#include "os_detection.h"
 
 #define MT_ZGUI MT(MOD_LGUI, KC_Z)
 #define MT_XALT MT(MOD_LALT, KC_X)
@@ -38,13 +39,15 @@ enum custom_keycodes {
     MV_MTCH,
 };
 
-static inline bool is_macos(void) {
-    return true; // TODO: Update this to actually detect OS
+static inline bool is_apple_os(void) {
+    os_variant_t detected_os = detected_host_os();
+    return detected_os == OS_MACOS
+        || detected_os == OS_IOS;
 }
 
 // Helper: send "primary modifier" = Cmd on mac, Ctrl on win/linux
 static inline uint8_t primary_mod(void) {
-    return is_macos() ? MOD_LGUI : MOD_LCTL;
+    return is_apple_os() ? MOD_LGUI : MOD_LCTL;
 }
 
 static inline void tap_mods(uint16_t key, uint8_t mods) {

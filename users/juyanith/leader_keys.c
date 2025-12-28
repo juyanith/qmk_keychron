@@ -61,7 +61,7 @@ void leader_end_user(void) {
     }
 
     if (leader_sequence_one_key(KC_M)) {                // maximize toggle
-        if (is_macos()) {
+        if (is_apple_os()) {
             tap_mods(KC_F, MOD_LGUI | MOD_LCTL);
         } else {
             tap_mods(KC_UP, MOD_LGUI);
@@ -69,7 +69,7 @@ void leader_end_user(void) {
         return;
     }
     if (leader_sequence_two_keys(KC_M, KC_M)) {         // minimize
-        if (is_macos()) {
+        if (is_apple_os()) {
             tap_mods(KC_M, MOD_LGUI);
         } else {
             tap_mods(KC_DOWN, MOD_LGUI);
@@ -127,7 +127,7 @@ void leader_end_user(void) {
     }
 
     if (leader_sequence_one_key(KC_SPC)) {              // applications
-        if (is_macos()) {
+        if (is_apple_os()) {
             tap_mods(KC_SPC, MOD_LGUI);
         } else {
             tap_code16(KC_LGUI);
@@ -154,7 +154,7 @@ void leader_end_user(void) {
     }
 
     if (leader_sequence_one_key(KC_W)) {                // window close
-        if (is_macos()) {
+        if (is_apple_os()) {
             tap_mods(KC_W, MOD_LGUI);
         } else {
             tap_mods(KC_F4, MOD_LALT);
