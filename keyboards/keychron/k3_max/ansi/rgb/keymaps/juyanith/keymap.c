@@ -72,11 +72,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______)
 };
 
-// TODO: Update user files to allow for this...
-//// clang-format on
-//bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-//    if (!process_record_keychron_common(keycode, record)) {
-//        return false;
-//    }
-//    return true;
-//}
+// clang-format on
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_record_juyanith(int keycode, int *record)) {
+        return false;
+    }
+    if (!process_record_keychron_common(keycode, record)) {
+        return false;
+    }
+    return true;
+}
