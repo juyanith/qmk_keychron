@@ -11,10 +11,9 @@
 #define MT_DOTA MT(MOD_RALT, KC_DOT)
 #define MT_SLSG MT(MOD_RGUI, KC_SLSH)
 #define SPC_NAV LT(NAV_LT, KC_SPC)
-#define LOC_NXT LGUI(LSFT(KC_RBRC))
-#define LOC_PRV LGUI(LSFT(KC_LBRC))
 #define WRD_PRV LALT(KC_LEFT)
 #define WRD_NXT LALT(KC_RGHT)
+#define RE_NAME KC_F2
 #define RUN_CNT KC_F5
 #define TOG_BRP KC_F9
 #define STEP_IN KC_F11
@@ -30,10 +29,12 @@
 #define MT_LFWD LGUI_T(KC_1) // C(S(KC_MINS))
 
 enum custom_keycodes {
-    DOC_NXT = SAFE_RANGE,
-    DOC_PRV,
-    LINE_UP,
+    DOC_PRV = SAFE_RANGE,
+    DOC_NXT,
+    LOC_PRV,
+    LOC_NXT,
     LINE_DN,
+    LINE_UP,
     MV_MTCH,
 };
 
