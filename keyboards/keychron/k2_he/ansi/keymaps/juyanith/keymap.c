@@ -55,3 +55,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  MT_UNDO,  MT_CUT,   MT_COPY,  MT_PSTE,  _______,  DOC_PRV,  MT_LBCK,  MT_CRDN,  MT_CRUP,  MT_LFWD,            DOC_NXT,            _______,  _______,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______)
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_record_juyanith(int keycode, int *record)) {
+        return false;
+    }
+    return true;
+}
