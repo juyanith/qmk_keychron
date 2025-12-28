@@ -14,8 +14,8 @@ Remotes:
 Branch layout:
 - vendor/2025q3
 - vendor/wireless_playground
-- my/k2_he
-- my/k3_max
+- juyanith/k2_he
+- juyanith/k3_max
 
 --------------------------------------------------
 One-time setup:
@@ -29,24 +29,24 @@ git branch -f vendor/wireless_playground keychron/wireless_playground
 git push origin vendor/2025q3 --force
 git push origin vendor/wireless_playground --force
 
-git switch -c my/k2_he vendor/2025q3
+git switch -c juyanith/k2_he vendor/2025q3
 # add users/juyanith and K2 HE keymap
 git commit -m "Add juyanith userspace and keymap for K2 HE"
-git push -u origin my/k2_he
+git push -u origin juyanith/k2_he
 
-git switch -c my/k3_max vendor/wireless_playground
+git switch -c juyanith/k3_max vendor/wireless_playground
 # add users/juyanith and K3 Max keymap
 git commit -m "Add juyanith userspace and keymap for K3 Max"
-git push -u origin my/k3_max
+git push -u origin juyanith/k3_max
 
 --------------------------------------------------
 Daily work:
 
-git switch my/k2_he
+git switch juyanith/k2_he
 # edit, commit, push
 
 # cherry pick common code in users/juyanith
-git switch my/k3_max
+git switch juyanith/k3_max
 git cherry-pick <commit>
 git push
 
@@ -61,20 +61,20 @@ git branch -f vendor/wireless_playground keychron/wireless_playground
 git push origin vendor/2025q3 --force
 git push origin vendor/wireless_playground --force
 
-git switch my/k2_he
+git switch juyanith/k2_he
 git rebase vendor/2025q3
 git push --force-with-lease
 
-git switch my/k3_max
+git switch juyanith/k3_max
 git rebase vendor/wireless_playground
 git push --force-with-lease
 
 --------------------------------------------------
 Build:
 
-git switch my/k2_he
+git switch juyanith/k2_he
 qmk compile -kb keychron/k2_he/ansi -km juyanith
 
-git switch my/k3_max
-qmk compile -kb keychron/k3_max -km juyanith
+git switch juyanith/k3_max
+qmk compile -kb keychron/k3_max/ansi/rgb -km juyanith
 
