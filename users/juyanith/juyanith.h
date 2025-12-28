@@ -63,3 +63,5 @@ static inline void tap_primary(uint16_t key) {
 static inline void tap_primary_mods(uint16_t key, uint8_t mods) {
     tap_mods(key, primary_mod() | mods);
 }
+
+bool process_record_juyanith(uint16_t keycode, keyrecord_t* record);
