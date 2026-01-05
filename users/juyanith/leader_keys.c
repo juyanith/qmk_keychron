@@ -46,6 +46,10 @@ void leader_end_user(void) {
         tap_primary_mods(KC_F, MOD_LALT);
         return;
     }
+    if (leader_sequence_two_keys(KC_F, KC_R)) {         // find references
+        tap_mods(KC_F12, MOD_LSFT);
+        return;
+    }
 
     if (leader_sequence_one_key(KC_G)) {                // goto line
         tap_mods(KC_G, MOD_LCTL);
