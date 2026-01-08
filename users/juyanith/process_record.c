@@ -134,9 +134,9 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
         case LINE_UP: // Custom: Move line up
             if (record->event.pressed) { // On press
                 register_mods(MOD_LALT);
-                register_code(KC_DOWN);
+                register_code(KC_UP);
             } else {                     // On release
-                unregister_code(KC_DOWN);
+                unregister_code(KC_UP);
                 unregister_mods(MOD_LALT);
             }
             return false;  // Skip default handling.
