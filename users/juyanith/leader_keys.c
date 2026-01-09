@@ -122,7 +122,12 @@ void leader_end_user(void) {
         return;
     }
     if (leader_sequence_two_keys(KC_S, KC_S)) {         // save all
-        tap_primary_mods(KC_S, MOD_LALT);
+        if (is_apple_os()) {
+            tap_mods(KC_S, MOD_LGUI | MOD_LALT);
+        } else {
+            tap_mods(KC_K, MOD_LCTL);
+            tap_code16(KC_S);
+        }
         return;
     }
     if (leader_sequence_two_keys(KC_S, KC_A)) {        // save as
