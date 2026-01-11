@@ -157,8 +157,8 @@ void leader_end_user(void) {
         tap_mods(KC_GRV, MOD_LCTL);
         return;
     }
-    if (leader_sequence_two_keys(KC_T, KC_T)) {         // terminal (system)
-        tap_hyper(KC_T);
+    if (leader_sequence_two_keys(KC_T, KC_T)) {         // terminal (quick-terminal)
+        tap_mods(KC_GRV, MOD_LGUI);
         return;
     }
 
