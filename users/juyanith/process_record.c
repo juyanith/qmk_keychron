@@ -4,6 +4,20 @@
 bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
 {
     switch (keycode) {
+        case KC_LCAG: // LCTL+LALT+LGUI
+            if (record->event.pressed) {
+                // When pressed, register Ctrl, Alt, and Gui modifiers
+                register_code(KC_LCTL);
+                register_code(KC_LALT);
+                register_code(KC_LGUI);
+            } else {
+                // When released, unregister all three modifiers
+                unregister_code(KC_LCTL);
+                unregister_code(KC_LALT);
+                unregister_code(KC_LGUI);
+            }
+            return false; // Skip default handling
+
         case MT_UNDO: // LGUI on hold, [LCTL|LGUI]-z on tap
             if (record->tap.count) { // On tap
                 if (record->event.pressed) { // On press

@@ -30,7 +30,8 @@
 #define MT_LFWD LGUI_T(KC_1) // C(S(KC_MINS))
 
 enum custom_keycodes {
-    DOC_PRV = SAFE_RANGE,
+    KC_LCAG = SAFE_RANGE,
+    DOC_PRV,
     DOC_NXT,
     LOC_PRV,
     LOC_NXT,
