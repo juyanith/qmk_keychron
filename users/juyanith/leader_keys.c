@@ -64,6 +64,10 @@ void leader_end_user(void) {
         return;
     }
 
+    if (leader_sequence_one_key(KC_L)) {                // (application) launch hooks
+        tap_hyper(KC_L);
+    }
+
     if (leader_sequence_one_key(KC_M)) {                // maximize toggle
         if (is_apple_os()) {
             tap_mods(KC_F, MOD_LGUI | MOD_LCTL);
@@ -106,6 +110,14 @@ void leader_end_user(void) {
     if (leader_sequence_two_keys(KC_P, KC_P)) {         // (command) palette
         tap_primary_mods(KC_P, MOD_LSFT);
         return;
+    }
+
+    if (leader_sequence_two_keys(KC_Q, KC_Q)) {         // quit
+        if (is_apple_os()) {
+            tap_mods(KC_Q, MOD_LGUI);
+        } else {
+            tap_mods(KC_F4, MOD_LALT);
+        }
     }
 
     if (leader_sequence_one_key(KC_R)) {                // run
@@ -162,27 +174,7 @@ void leader_end_user(void) {
         return;
     }
 
-    if (leader_sequence_one_key(KC_W)) {                // window close
-        if (is_apple_os()) {
-            tap_mods(KC_W, MOD_LGUI);
-        } else {
-            tap_mods(KC_F4, MOD_LALT);
-        }
-        return;
-    }
-    if (leader_sequence_two_keys(KC_W, KC_E)) {         // window editor (linux -> ?, mac -> zed, windows -> vscode)
-        tap_hyper(KC_E);
-        return;
-    }
-    if (leader_sequence_two_keys(KC_W, KC_F)) {         // window files (linux -> files, mac -> finder, windows -> explorer)
-        tap_hyper(KC_F);
-        return;
-    }
-    if (leader_sequence_two_keys(KC_W, KC_T)) {         // window terminal (linux -> term, mac -> ghostty, windows -> terminal)
-        tap_hyper(KC_T);
-        return;
-    }
-    if (leader_sequence_two_keys(KC_W, KC_W)) {         // window web browser (linux -> brave, mac -> safari, windows -> edge)
+    if (leader_sequence_one_key(KC_W)) {                // window hooks
         tap_hyper(KC_W);
         return;
     }
