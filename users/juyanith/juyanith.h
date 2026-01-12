@@ -57,7 +57,11 @@ static inline void tap_mods(uint16_t key, uint8_t mods) {
 }
 
 static inline void tap_hyper(uint16_t key) {
-    tap_mods(key, MOD_LGUI | MOD_LALT | MOD_LSFT | MOD_LCTL);
+    tap_mods(key, MOD_LCTL | MOD_LALT | MOD_LGUI | MOD_LSFT);
+}
+
+static inline void tap_super(uint16_t key) {
+    tap_mods(key, MOD_LCTL | MOD_LALT | MOD_LGUI);
 }
 
 static inline void tap_primary(uint16_t key) {
