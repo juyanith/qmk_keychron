@@ -33,8 +33,6 @@ enum custom_keycodes {
     KC_LCAG = SAFE_RANGE,
     DOC_PRV,
     DOC_NXT,
-    LOC_PRV,
-    LOC_NXT,
     LINE_DN,
     LINE_UP,
     MV_MTCH,
