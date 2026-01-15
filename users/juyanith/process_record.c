@@ -57,7 +57,11 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
         case MT_LBCK: // LCTL on hold, LCTL-minus on tap
             if (record->tap.count) { // On tap
                 if (record->event.pressed) { // On press
-                    tap_mods(KC_MINUS, MOD_LCTL);
+                    if (is_apple_os()) {
+                        tap_mods(KC_MINUS, MOD_LCTL);
+                    } else {
+                        tap_mods(KC_LEFT, MOD_LALT);
+                    }
                 }
                 return false;  // Skip default handling.
             }
@@ -66,7 +70,7 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
         case MT_CRDN: // LCTL on hold, LGUI-LALT-down on tap
             if (record->tap.count) { // On tap
                 if (record->event.pressed) { // On press
-                    tap_mods(KC_DOWN, MOD_LGUI | MOD_LALT);
+                    tap_primary_mods(KC_DOWN, MOD_LALT);
                 }
                 return false;  // Skip default handling.
             }
@@ -75,7 +79,7 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
         case MT_CRUP: // LCTL on hold, LGUI-LALT-up on tap
             if (record->tap.count) { // On tap
                 if (record->event.pressed) { // On press
-                    tap_mods(KC_UP, MOD_LGUI | MOD_LALT);
+                    tap_primary_mods(KC_UP, MOD_LALT);
                 }
                 return false;  // Skip default handling.
             }
@@ -84,7 +88,11 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
         case MT_LFWD: // LGUI on hold, LCTL-LSFT-minus on tap
             if (record->tap.count) { // On tap
                 if (record->event.pressed) { // On press
-                    tap_mods(KC_MINUS, MOD_LCTL | MOD_LSFT);
+                    if (is_apple_os()) {
+                        tap_mods(KC_MINUS, MOD_LCTL | MOD_LSFT);
+                    } else {
+                        tap_mods(KC_RIGHT, MOD_LALT);
+                    }
                 }
                 return false;  // Skip default handling.
             }
