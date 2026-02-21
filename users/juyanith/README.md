@@ -42,13 +42,17 @@ git push -u origin juyanith/k3_max
 --------------------------------------------------
 Daily work:
 
-git switch juyanith/k2_he
+git switch juyanith/k2_he 
 # edit, commit, push
 
 # cherry pick common code in users/juyanith
 git switch juyanith/k3_max
 git cherry-pick <commit>
 git push
+
+Note on submodules:
+- Ensure submodules are updated and initialized before compiling.
+- Use `git submodule update --init --recursive` to initialize and update submodules.
 
 --------------------------------------------------
 Update from Keychron:
@@ -77,4 +81,3 @@ qmk compile -kb keychron/k2_he/ansi -km juyanith
 
 git switch juyanith/k3_max
 qmk compile -kb keychron/k3_max/ansi/rgb -km juyanith
-
