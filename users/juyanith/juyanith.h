@@ -39,37 +39,31 @@ enum custom_keycodes {
     MV_MTCH,
 };
 
+static inline void tap_hyper(uint16_t key) {
+    tap_code16(C(A(G(S(key)))));
+}
+
+static inline void tap_super(uint16_t key) {
+    tap_code16(C(A(G(key))));
+}
+
 static inline bool is_apple_os(void) {
     os_variant_t detected_os = detected_host_os();
     return detected_os == OS_MACOS
         || detected_os == OS_IOS;
 }
 
-// Helper: send "primary modifier" = Cmd on mac, Ctrl on win/linux
+// Helper: determine "primary modifier": Cmd on mac, Ctrl on win/linux
 static inline uint8_t primary_mod(void) {
     return is_apple_os() ? MOD_LGUI : MOD_LCTL;
 }
 
-static inline void tap_mods(uint16_t key, uint8_t mods) {
-    register_mods(mods);
-    tap_code16(key);
-    unregister_mods(mods);
-}
-
-static inline void tap_hyper(uint16_t key) {
-    tap_mods(key, MOD_LCTL | MOD_LALT | MOD_LGUI | MOD_LSFT);
-}
-
-static inline void tap_super(uint16_t key) {
-    tap_mods(key, MOD_LCTL | MOD_LALT | MOD_LGUI);
-}
-
 static inline void tap_primary(uint16_t key) {
-    tap_mods(key, primary_mod());
-}
-
-static inline void tap_primary_mods(uint16_t key, uint8_t mods) {
-    tap_mods(key, primary_mod() | mods);
+    if (is_apple_os()) {
+        tap_code16(G(key));
+    } else {
+        tap_code16(C(key));
+    }
 }
 
 bool process_record_juyanith(uint16_t keycode, keyrecord_t* record);

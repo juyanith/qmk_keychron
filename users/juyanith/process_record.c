@@ -4,24 +4,10 @@
 bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
 {
     switch (keycode) {
-        case KC_LCAG: // LCTL+LALT+LGUI
-            if (record->event.pressed) {
-                // When pressed, register Ctrl, Alt, and Gui modifiers
-                register_code(KC_LCTL);
-                register_code(KC_LALT);
-                register_code(KC_LGUI);
-            } else {
-                // When released, unregister all three modifiers
-                unregister_code(KC_LCTL);
-                unregister_code(KC_LALT);
-                unregister_code(KC_LGUI);
-            }
-            return false; // Skip default handling
-
         case MT_LCAG: // LCTL+LALT+LGUI on hold, LCTL+LALT+LGUI+Space on tap
             if (record->tap.count) { // On tap
                 if (record->event.pressed) { // On press
-                    tap_mods(KC_SPC, MOD_LCTL | MOD_LALT | MOD_LGUI);
+                    tap_code16(C(A(G(KC_SPC))));
                 }
                 return false;  // Skip default handling.
             }
@@ -67,9 +53,9 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
             if (record->tap.count) { // On tap
                 if (record->event.pressed) { // On press
                     if (is_apple_os()) {
-                        tap_mods(KC_MINUS, MOD_LCTL);
+                        tap_code16(C(KC_MINUS));
                     } else {
-                        tap_mods(KC_LEFT, MOD_LALT);
+                        tap_code16(A(KC_LEFT));
                     }
                 }
                 return false;  // Skip default handling.
@@ -79,7 +65,7 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
         case MT_CRDN: // LCTL on hold, LGUI-LALT-down on tap
             if (record->tap.count) { // On tap
                 if (record->event.pressed) { // On press
-                    tap_primary_mods(KC_DOWN, MOD_LALT);
+                    tap_primary(A(KC_DOWN));
                 }
                 return false;  // Skip default handling.
             }
@@ -88,7 +74,7 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
         case MT_CRUP: // LCTL on hold, LGUI-LALT-up on tap
             if (record->tap.count) { // On tap
                 if (record->event.pressed) { // On press
-                    tap_primary_mods(KC_UP, MOD_LALT);
+                    tap_primary(A(KC_UP));
                 }
                 return false;  // Skip default handling.
             }
@@ -98,9 +84,9 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
             if (record->tap.count) { // On tap
                 if (record->event.pressed) { // On press
                     if (is_apple_os()) {
-                        tap_mods(KC_MINUS, MOD_LCTL | MOD_LSFT);
+                        tap_code16(C(S(KC_MINUS)));
                     } else {
-                        tap_mods(KC_RIGHT, MOD_LALT);
+                        tap_code16(A(KC_RIGHT));
                     }
                 }
                 return false;  // Skip default handling.
