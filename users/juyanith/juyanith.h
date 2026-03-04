@@ -12,8 +12,8 @@
 #define MT_DOTA MT(MOD_RALT, KC_DOT)
 #define MT_SLSG MT(MOD_RGUI, KC_SLSH)
 #define SPC_NAV LT(NAV_LT, KC_SPC)
-#define WRD_PRV LALT(KC_LEFT)
-#define WRD_NXT LALT(KC_RGHT)
+#define DOC_PRV LSFT(LCTL(KC_TAB)))
+#define DOC_NXT LCTL(KC_TAB)
 #define RE_NAME KC_F2
 #define RUN_CNT KC_F5
 #define TOG_BRP KC_F9
@@ -32,8 +32,8 @@
 
 enum custom_keycodes {
     KC_LCAG = SAFE_RANGE,
-    DOC_PRV,
-    DOC_NXT,
+    WORD_PRV,
+    WORD_NXT,
     LINE_DN,
     LINE_UP,
     MV_MTCH,

@@ -93,26 +93,30 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
             }
             break;
 
-        case DOC_PRV: // Custom: Previous tab/document
+        case WORD_PRV: // Cursor to beginning of word
             if (record->event.pressed) { // On press
-                register_mods(primary_mod() | MOD_LSFT);
-                register_code(KC_RBRC);
-            } else {                     // On release
-                unregister_code(KC_RBRC);
-                unregister_mods(primary_mod() | MOD_LSFT);
+                if (record->event.pressed) { // On press
+                    if (is_apple_os()) {
+                        tap_code16(A(KC_LEFT));
+                    } else {
+                        tap_code16(C(KC_LEFT));
+                    }
+                }
+                return false;  // Skip default handling.
             }
-            return false;  // Skip default handling.
             break;
 
-        case DOC_NXT: // Custom: Next tab/document
+        case WORD_NXT: // Cursor to end of word
             if (record->event.pressed) { // On press
-                register_mods(primary_mod() | MOD_LSFT);
-                register_code(KC_LBRC);
-            } else {                     // On release
-                unregister_code(KC_LBRC);
-                unregister_mods(primary_mod() | MOD_LSFT);
+                if (record->event.pressed) { // On press
+                    if (is_apple_os()) {
+                        tap_code16(A(KC_RIGHT));
+                    } else {
+                        tap_code16(C(KC_RIGHT));
+                    }
+                }
+                return false;  // Skip default handling.
             }
-            return false;  // Skip default handling.
             break;
 
         case LINE_DN: // Custom: Move line down
