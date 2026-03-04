@@ -93,7 +93,7 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
             }
             break;
 
-        case WORD_PRV: // Cursor to beginning of word
+        case WRD_PRV: // Cursor to beginning of word
             if (record->event.pressed) { // On press
                 if (record->event.pressed) { // On press
                     if (is_apple_os()) {
@@ -106,7 +106,7 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
             }
             break;
 
-        case WORD_NXT: // Cursor to end of word
+        case WRD_NXT: // Cursor to end of word
             if (record->event.pressed) { // On press
                 if (record->event.pressed) { // On press
                     if (is_apple_os()) {
