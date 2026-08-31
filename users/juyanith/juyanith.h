@@ -20,7 +20,7 @@
 #define STEP_IN KC_F11
 #define STEP_OT LSFT(KC_F11)
 #define STEP_OV KC_F10
-#define MT_LCAG LCAG_T(KC_0) // KC_SPC
+#define MT_LCAG LCAG_T(KC_ESC)
 #define MT_UNDO LGUI_T(KC_0) // KC_Z
 #define MT_CUT  LALT_T(KC_0) // KC_X
 #define MT_COPY LSFT_T(KC_0) // KC_C

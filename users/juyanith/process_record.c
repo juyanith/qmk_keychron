@@ -4,15 +4,6 @@
 bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
 {
     switch (keycode) {
-        case MT_LCAG: // LCTL+LALT+LGUI on hold, LCTL+LALT+LGUI+Space on tap
-            if (record->tap.count) { // On tap
-                if (record->event.pressed) { // On press
-                    tap_code16(C(A(G(KC_SPC))));
-                }
-                return false;  // Skip default handling.
-            }
-            break;
-
         case MT_UNDO: // LGUI on hold, [LCTL|LGUI]-z on tap
             if (record->tap.count) { // On tap
                 if (record->event.pressed) { // On press
