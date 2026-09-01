@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  RE_NAME,  TOG_BRP,  RUN_CNT,  STEP_OV,  STEP_IN,  STEP_OT,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
         KC_ESC,   KC_GRV,   LINE_DN,  LINE_UP,  _______,  _______,  KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   DOC_PRV,  DOC_NXT,  _______,  _______,            _______,
         _______,  KC_TAB,   KC_ENT,   KC_BSPC,  KC_DEL,   MV_MTCH,  KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  WRD_PRV,  WRD_NXT,            _______,            _______,
-        _______,  MT_UNDO,  MT_CUT,   MT_COPY,  MT_PSTE,  _______,  _______,  MT_LBCK,  MT_CRDN,  MT_CRUP,  MT_LFWD,            _______,            _______,  _______,
+        _______,  MT_UNDO,  MT_CUT,   MT_COPY,  MT_PSTE,  _______,  MT_LBCK,  MT_CRDN,  MT_CRUP,  MT_LFWD,  _______,            _______,            _______,  _______,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______)
 };
 
