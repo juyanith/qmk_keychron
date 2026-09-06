@@ -81,3 +81,14 @@ qmk compile -kb keychron/k2_he/ansi -km juyanith
 
 git switch juyanith/k3_max
 qmk compile -kb keychron/k3_max/ansi/rgb -km juyanith
+
+--------------------------------------------------
+K2 HE layout policy:
+
+- Mac mode is the customized layout. The planned Tab/Hyper mod-tap belongs only on MAC_BASE.
+- Windows mode is the stock typing fallback: plain letters, punctuation, Tab,
+  Caps Lock, and Space; no mod-taps or Space navigation layer. Caps Word is
+  disabled in Windows mode. Stock Fn, media, lighting, and connection controls remain.
+- Apply the same policy when updating the K3 Max branch.
+- VIA saved mappings can override firmware defaults after flashing; update the
+  saved assignments or reset the dynamic keymap after preserving custom mappings.
