@@ -93,3 +93,5 @@ K2 HE layout policy:
 - Apply the same policy when updating the K3 Max branch.
 - VIA saved mappings can override firmware defaults after flashing; update the
   saved assignments or reset the dynamic keymap after preserving custom mappings.
+- Windows mode uses the Mac keycap modifier positions: left Control,
+  Option (Alt), Command (Super); right Command (Super), Fn, Control.
