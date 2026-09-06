@@ -92,3 +92,5 @@ K2 HE and K3 Max layout policy:
   disabled in Windows mode. Stock Fn, media, lighting, and connection controls remain.
 - VIA saved mappings can override firmware defaults after flashing; update the
   saved assignments or reset the dynamic keymap after preserving custom mappings.
+- On K3 Max, Windows mode uses the Mac keycap modifier positions: left
+  Control, Option (Alt), Command (Super); right Command (Super), Fn, Control.
