@@ -85,7 +85,8 @@ qmk compile -kb keychron/k3_max/ansi/rgb -km juyanith
 --------------------------------------------------
 K2 HE layout policy:
 
-- Mac mode is the customized layout. The planned Tab/Hyper mod-tap belongs only on MAC_BASE.
+- Mac mode is the customized layout. On MAC_BASE, Tab taps Tab and holds
+  Super+Alt+Ctrl+Shift (Hyper), using the default 200 ms tapping term.
 - Windows mode is the stock typing fallback: plain letters, punctuation, Tab,
   Caps Lock, and Space; no mod-taps or Space navigation layer. Caps Word is
   disabled in Windows mode. Stock Fn, media, lighting, and connection controls remain.
