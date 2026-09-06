@@ -81,3 +81,14 @@ qmk compile -kb keychron/k2_he/ansi -km juyanith
 
 git switch juyanith/k3_max
 qmk compile -kb keychron/k3_max/ansi/rgb -km juyanith
+
+--------------------------------------------------
+K2 HE and K3 Max layout policy:
+
+- Mac mode is the customized layout. On MAC_BASE, Tab taps Tab and holds
+  Super+Alt+Ctrl+Shift (Hyper), using the default 200 ms tapping term.
+- Windows mode is the stock typing fallback: plain letters, punctuation, Tab,
+  Caps Lock, and Space; no mod-taps or Space navigation layer. Caps Word is
+  disabled in Windows mode. Stock Fn, media, lighting, and connection controls remain.
+- VIA saved mappings can override firmware defaults after flashing; update the
+  saved assignments or reset the dynamic keymap after preserving custom mappings.

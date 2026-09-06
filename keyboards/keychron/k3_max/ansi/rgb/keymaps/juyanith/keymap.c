@@ -34,7 +34,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [MAC_BASE] = LAYOUT_ansi_84(
      KC_ESC,   KC_BRID,  KC_BRIU,  KC_MCTRL, KC_LNPAD, RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_SNAP,  KC_DEL,   RGB_MOD,
      KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            KC_PGUP,
-     KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_PGDN,
+     TAB_HYPR, KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_PGDN,
      MT_LCAG,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,             KC_HOME,
      KC_LSFT,  MT_ZGUI,  MT_XALT,  MT_CSFT,  MT_VCTL,  KC_B,     KC_N,     MT_MCTL,  MT_CMAS,  MT_DOTA,  MT_SLSG,            KC_RSFT,            KC_UP,    KC_END,
      KC_LCTL,  KC_LOPTN, KC_LCMMD,                               SPC_NAV,                                KC_RCMMD, FN_MAC,   KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
@@ -52,8 +52,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            KC_PGUP,
      KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_PGDN,
      KC_CAPS,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            KC_ENT,             KC_HOME,
-     KC_LSFT,  MT_ZGUI,  MT_XALT,  MT_CSFT,  MT_VCTL,  KC_B,     KC_N,     MT_MCTL,  MT_CMAS,  MT_DOTA,  MT_SLSG,            KC_RSFT,            KC_UP,    KC_END,
-     KC_LCTL,  KC_LGUI,  KC_LALT,                                SPC_NAV,                                KC_RALT,  FN_WIN,   KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
+     KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,            KC_RSFT,            KC_UP,    KC_END,
+     KC_LCTL,  KC_LGUI,  KC_LALT,                                KC_SPC,                                 KC_RALT,  FN_WIN,   KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
 
 [WIN_FN] = LAYOUT_ansi_84(
      _______,  KC_BRID,  KC_BRIU,  KC_TASK,  KC_FILE,  RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,  _______,  RGB_TOG,
@@ -73,7 +73,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 // clang-format on
+// Caps Word clears held modifiers on activation; preserve them in fallback mode.
+static uint8_t fallback_mods;
+
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+    fallback_mods = get_mods();
     if (!process_record_juyanith(keycode, record)) {
         return false;
     }
@@ -81,4 +85,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         return false;
     }
     return true;
+}
+
+// Windows mode is the stock typing fallback, including ordinary Shift behavior.
+void caps_word_set_user(bool active) {
+    if (active && get_highest_layer(default_layer_state) == WIN_BASE) {
+        caps_word_off();
+        set_mods(fallback_mods);
+    }
+}
+
+layer_state_t default_layer_state_set_user(layer_state_t state) {
+    if (get_highest_layer(state) == WIN_BASE) {
+        caps_word_off();
+    }
+    return state;
 }
