@@ -4,6 +4,12 @@
 bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
 {
     switch (keycode) {
+        case PRIM_D: // Cmd+D on macOS; Ctrl+D elsewhere
+            if (record->event.pressed) {
+                tap_primary(KC_D);
+            }
+            return false;
+
         case MT_UNDO: // LGUI on hold, [LCTL|LGUI]-z on tap
             if (record->tap.count) { // On tap
                 if (record->event.pressed) { // On press

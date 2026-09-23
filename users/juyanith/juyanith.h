@@ -38,6 +38,7 @@ enum custom_keycodes {
     LINE_DN,
     LINE_UP,
     MV_MTCH,
+    PRIM_D,
 };
 
 static inline void tap_hyper(uint16_t key) {
