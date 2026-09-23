@@ -84,11 +84,11 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
             }
             break;
 
-        case WRD_PRV: // Cursor to beginning of word
+        case WRD_PRV: // Cmd+Left on macOS; Ctrl+Left elsewhere
             if (record->event.pressed) { // On press
                 if (record->event.pressed) { // On press
                     if (is_apple_os()) {
-                        tap_code16(A(KC_LEFT));
+                        tap_code16(G(KC_LEFT));
                     } else {
                         tap_code16(C(KC_LEFT));
                     }
@@ -97,11 +97,11 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
             }
             break;
 
-        case WRD_NXT: // Cursor to end of word
+        case WRD_NXT: // Cmd+Right on macOS; Ctrl+Right elsewhere
             if (record->event.pressed) { // On press
                 if (record->event.pressed) { // On press
                     if (is_apple_os()) {
-                        tap_code16(A(KC_RIGHT));
+                        tap_code16(G(KC_RIGHT));
                     } else {
                         tap_code16(C(KC_RIGHT));
                     }
