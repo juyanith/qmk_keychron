@@ -123,7 +123,8 @@ switch position for these shortcuts on any OS. Output follows detected host OS.
 
 Q/W/E/R/T/A/S/D/F/G and comma/period taps are reserved (no output).
 Z/X/C/V retain left Super/Alt/Shift/Ctrl holds. M/comma/period/slash retain
-right Ctrl/Shift/Alt/Super holds. N and Y retain their base letters. Other
+right Ctrl/Shift/Alt/Super holds. Y, N, right bracket, and backslash emit no output on this layer;
+Enter passes through. Other
 function, connection, lighting, and number-row editor commands remain intact.
 
 Primary means Command on macOS and Ctrl elsewhere. macOS uses Option+arrows
