@@ -26,10 +26,10 @@
 #define MT_CUT  LALT_T(KC_0) // KC_X
 #define MT_COPY LSFT_T(KC_0) // KC_C
 #define MT_PSTE LCTL_T(KC_0) // KC_V
-#define MT_LBCK LCTL_T(KC_1) // C(KC_MINS)
-#define MT_CRDN LSFT_T(KC_1) // G(A(KC_DOWN))
-#define MT_CRUP LALT_T(KC_1) // G(A(KC_UP))
-#define MT_LFWD LGUI_T(KC_1) // C(S(KC_MINS))
+#define MT_FIND RCTL_T(KC_F3)
+#define MT_INST RSFT_T(KC_1) // Primary modifier + F3 on tap
+#define MT_ADD  RALT_T(KC_1) // Primary modifier + D on tap
+#define MT_ARROW RGUI_T(KC_1) // Down on tap; Shift selects unshifted Up
 
 enum custom_keycodes {
     KC_LCAG = SAFE_RANGE,
@@ -38,7 +38,7 @@ enum custom_keycodes {
     LINE_DN,
     LINE_UP,
     MV_MTCH,
-    PRIM_D,
+    NAV_LOC,
 };
 
 static inline void tap_hyper(uint16_t key) {
