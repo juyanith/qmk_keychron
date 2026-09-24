@@ -11,9 +11,9 @@
 #define MT_CMAS MT(MOD_RSFT, KC_COMM)
 #define MT_DOTA MT(MOD_RALT, KC_DOT)
 #define MT_SLSG MT(MOD_RGUI, KC_SLSH)
-#define SPC_NAV LT(NAV_LT, KC_SPC)
-#define DOC_PRV LSFT(LCTL(KC_TAB))
-#define DOC_NXT LCTL(KC_TAB)
+#define SPC_NAV LT(NV_LT, KC_SPC)
+#define NV_DPRV LSFT(LCTL(KC_TAB))
+#define NV_DOC LCTL(KC_TAB)
 #define RE_NAME KC_F2
 #define RUN_CNT KC_F5
 #define TOG_BRP KC_F9
@@ -27,8 +27,8 @@
 #define MT_COPY LSFT_T(KC_0) // KC_C
 #define MT_PSTE LCTL_T(KC_0) // KC_V
 #define MT_FIND RCTL_T(KC_F3)
-#define MT_INST RSFT_T(KC_1) // Primary modifier + F3 on tap
-#define MT_ADD  RALT_T(KC_1) // Primary modifier + D on tap
+#define MT_RSFT RSFT_T(KC_1) // Reserved tap; retain Right Shift hold
+#define MT_RALT RALT_T(KC_1) // Reserved tap; retain Right Alt hold
 #define MT_CRSR RGUI_T(KC_1) // Platform Down shortcut on tap; Shift selects Up
 
 enum custom_keycodes {
@@ -38,7 +38,17 @@ enum custom_keycodes {
     LINE_DN,
     LINE_UP,
     MV_MTCH,
-    NAV_LOC,
+    NV_LOC,
+    NV_LEFT,
+    NV_RGHT,
+    NV_DOWN,
+    NV_UP,
+    NV_HOME,
+    NV_END,
+    NV_PGUP,
+    NV_PGDN,
+    NV_BSDL,
+    NV_QUOT,
 };
 
 static inline void tap_hyper(uint16_t key) {
@@ -69,3 +79,5 @@ static inline void tap_primary(uint16_t key) {
 }
 
 bool process_record_juyanith(uint16_t keycode, keyrecord_t* record);
+
+void prepare_primary_movement(void);

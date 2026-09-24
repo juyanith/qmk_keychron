@@ -1,86 +1,60 @@
 
 #include "juyanith.h"
 
-// Remove the selecting Shift before emitting the chosen shortcut.
-static void tap_nav_shifted(uint16_t normal, uint16_t shifted) {
+#include "primary_editing.h"
+
+// Shift/Alt select editing actions; consume those selectors in the output,
+// then restore physical/weak modifiers so subsequent keys keep their state.
+static void tap_primary_editing(uint16_t action) {
     const uint8_t mods = get_mods();
-    const uint8_t weak_mods = get_weak_mods();
-    const bool shift = ((mods | weak_mods) & MOD_MASK_SHIFT) != 0;
-    set_mods(mods & ~MOD_MASK_SHIFT);
-    set_weak_mods(weak_mods & ~MOD_MASK_SHIFT);
-    tap_code16(shift ? shifted : normal);
+    const uint8_t weak = get_weak_mods();
+    const uint8_t selectors = MOD_MASK_SHIFT | MOD_MASK_ALT;
+    const uint8_t active = mods | weak;
+    const uint16_t key = primary_editing_key(action, is_apple_os(), active & MOD_MASK_SHIFT, active & MOD_MASK_ALT);
+    if (key == KC_NO) return;
+    // This tap bypasses the later override processor. End a held movement
+    // first so its replacement modifiers cannot leak into the editor command.
+    if (key_override_is_enabled()) {
+        key_override_off();
+        key_override_on();
+    }
+    set_mods(mods & ~selectors);
+    set_weak_mods(weak & ~selectors);
+    tap_code16(key);
     set_mods(mods);
-    set_weak_mods(weak_mods);
+    set_weak_mods(weak);
     send_keyboard_report();
 }
 
 bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
 {
+    prepare_primary_movement();
     switch (keycode) {
-        case NAV_LOC: // Backward location; Shift selects forward location
-            if (record->event.pressed) {
-                if (is_apple_os()) {
-                    tap_nav_shifted(G(KC_MINS), G(S(KC_MINS)));
-                } else {
-                    tap_nav_shifted(C(A(KC_MINS)), C(S(KC_MINS)));
-                }
-            }
+        case MT_UNDO:
+        case MT_CUT:
+        case MT_COPY:
+        case MT_PSTE:
+        case MT_FIND:
+        case MT_RSFT:
+        case MT_RALT:
+        case MT_CRSR:
+            if (!record->tap.count) return true; // Preserve QMK modifier holds.
+            // Tap actions use the same resolver as the immediate editing keys.
+        case NV_LOC:
+            if (record->event.pressed) tap_primary_editing(keycode);
             return false;
 
-        case MT_UNDO: // LGUI on hold, [LCTL|LGUI]-z on tap
-            if (record->tap.count) { // On tap
-                if (record->event.pressed) { // On press
-                    tap_primary(KC_Z);
-                }
-                return false;  // Skip default handling.
-            }
-            break;
-
-        case MT_CUT: // LALT on hold, [LCTL|LGUI]-x on tap
-            if (record->tap.count) { // On tap
-                if (record->event.pressed) { // On press
-                    tap_primary(KC_X);
-                }
-                return false;  // Skip default handling.
-            }
-            break;
-
-        case MT_COPY: // LSFT on hold, [LCTL|LGUI]-c on tap
-            if (record->tap.count) { // On tap
-                if (record->event.pressed) { // On press
-                    tap_primary(KC_C);
-                }
-                return false;  // Skip default handling.
-            }
-            break;
-
-        case MT_PSTE: // LCTL on hold, [LCTL|LGUI]-v on tap
-            if (record->tap.count) { // On tap
-                if (record->event.pressed) { // On press
-                    tap_primary(KC_V);
-                }
-                return false;  // Skip default handling.
-            }
-            break;
-
-        case MT_INST: // Right Shift on hold; Cmd/Ctrl+F3 on tap
-        case MT_ADD: // Right Alt on hold; Cmd/Ctrl+D on tap
-        case MT_CRSR: // Right Super on hold; platform Down/Up shortcut on tap
-            if (record->tap.count) {
-                if (record->event.pressed) {
-                    if (keycode == MT_CRSR) {
-                        if (is_apple_os()) {
-                            tap_nav_shifted(G(A(KC_DOWN)), G(A(KC_UP)));
-                        } else {
-                            tap_nav_shifted(A(S(KC_DOWN)), A(S(KC_UP)));
-                        }
-                    } else {
-                        tap_primary(keycode == MT_INST ? KC_F3 : KC_D);
-                    }
-                }
-                return false;
-            }
-            break;
+        case NV_LEFT:
+        case NV_RGHT:
+        case NV_DOWN:
+        case NV_UP:
+        case NV_HOME:
+        case NV_END:
+        case NV_PGUP:
+        case NV_PGDN:
+        case NV_BSDL:
+        case NV_QUOT:
+            return true; // QMK key overrides handle held movement and release.
 
         case WRD_PRV: // Cmd+Left on macOS; Ctrl+Left elsewhere
             if (record->event.pressed) { // On press

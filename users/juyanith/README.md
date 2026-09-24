@@ -95,3 +95,51 @@ K2 HE layout policy:
   saved assignments or reset the dynamic keymap after preserving custom mappings.
 - Windows mode uses the Mac keycap modifier positions: left Control,
   Option (Alt), Command (Super); right Command (Super), Fn, Control.
+
+--------------------------------------------------
+Primary editing layer (hold Space):
+
+Space still taps Space. Tab still taps Tab and holds Hyper outside this layer;
+Space+Tab sends Enter. Caps/Escape, OS detection, and tap/hold timing are unchanged.
+Spatial movement uses QMK key overrides to preserve native held-key repeat
+and Shift/Alt changes during a hold. Editor mod-taps retain their existing
+tap/hold handling.
+The keyboard's Windows mode remains a plain fallback; use the customized Mac
+switch position for these shortcuts on any OS. Output follows detected host OS.
+
+| Key | Base | Shift | Alt/Option | Alt+Shift |
+| --- | --- | --- | --- | --- |
+| J / semicolon | Left / Right | Select | Word movement | Select word |
+| K / L | Down / Up | Select | Scroll line | Reserved |
+| U / P | Line start / end | Select | Document start / end | Select document boundary |
+| I / O | Page Down / Up | Select page | Same as base | Same as Shift |
+| H | Backspace | Delete | Delete previous word | Delete next word |
+| M | F3: next search match | Shift+F3: previous match | Primary+F3: next occurrence | Primary+Shift+F3: previous occurrence |
+| B | Back location | Forward location | Same as base | Same as Shift |
+| Slash | Add cursor down | Add cursor up | Backslash | Backslash |
+| Apostrophe | Reserved | Reserved | Grave | Grave |
+| Z | Undo | Redo | Undo | Redo |
+| X / C / V | Cut / Copy / Paste | Same as base | Same as base | Same as base |
+
+Q/W/E/R/T/A/S/D/F/G and comma/period taps are reserved (no output).
+Z/X/C/V retain left Super/Alt/Shift/Ctrl holds. M/comma/period/slash retain
+right Ctrl/Shift/Alt/Super holds. N and Y retain their base letters. Other
+function, connection, lighting, and number-row editor commands remain intact.
+
+Primary means Command on macOS and Ctrl elsewhere. macOS uses Option+arrows
+for words, Command+Left/Right for line boundaries, Command+Up/Down for document
+boundaries, and Ctrl+Page Up/Down for line scrolling. Windows/Linux use
+Ctrl+arrows, Home/End, Ctrl+Home/End, and Ctrl+Up/Down respectively. Word deletion
+uses Option on macOS and Ctrl elsewhere. Redo emits Cmd+Shift+Z on macOS and
+Ctrl+Y elsewhere.
+
+Existing back/forward shortcuts are preserved: Cmd+Minus / Cmd+Shift+Minus on
+macOS, Ctrl+Alt+Minus / Ctrl+Shift+Minus elsewhere. Existing multicursor outputs
+are Cmd+Option+Down/Up on macOS and Alt+Shift+Down/Up elsewhere. The latter match
+VS Code Linux defaults; Windows defaults use Ctrl+Alt+Down/Up, so a Windows
+editor binding is needed to retain these existing outputs. Search/occurrence
+shortcuts and navigation history may also depend on editor customizations.
+No synthetic function keys are used.
+
+Resolver checks:
+`cc -std=c99 -Wall -Wextra -Werror users/juyanith/tests/test_primary_editing.c -o /tmp/primary-test && /tmp/primary-test`
