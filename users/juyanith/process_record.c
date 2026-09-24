@@ -1,7 +1,7 @@
 
 #include "juyanith.h"
 
-// Shift selects an alternate action without extending a text selection.
+// Remove the selecting Shift before emitting the chosen shortcut.
 static void tap_nav_shifted(uint16_t normal, uint16_t shifted) {
     const uint8_t mods = get_mods();
     const uint8_t weak_mods = get_weak_mods();
@@ -17,9 +17,13 @@ static void tap_nav_shifted(uint16_t normal, uint16_t shifted) {
 bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
 {
     switch (keycode) {
-        case NAV_LOC: // Forward location; Shift selects backward location
+        case NAV_LOC: // Backward location; Shift selects forward location
             if (record->event.pressed) {
-                tap_nav_shifted(C(S(KC_MINS)), is_apple_os() ? C(KC_MINS) : C(A(KC_MINS)));
+                if (is_apple_os()) {
+                    tap_nav_shifted(G(KC_MINS), G(S(KC_MINS)));
+                } else {
+                    tap_nav_shifted(C(A(KC_MINS)), C(S(KC_MINS)));
+                }
             }
             return false;
 
@@ -61,11 +65,15 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
 
         case MT_INST: // Right Shift on hold; Cmd/Ctrl+F3 on tap
         case MT_ADD: // Right Alt on hold; Cmd/Ctrl+D on tap
-        case MT_ARROW: // Right Super on hold; Down or unshifted Up on tap
+        case MT_CRSR: // Right Super on hold; platform Down/Up shortcut on tap
             if (record->tap.count) {
                 if (record->event.pressed) {
-                    if (keycode == MT_ARROW) {
-                        tap_nav_shifted(KC_DOWN, KC_UP);
+                    if (keycode == MT_CRSR) {
+                        if (is_apple_os()) {
+                            tap_nav_shifted(G(A(KC_DOWN)), G(A(KC_UP)));
+                        } else {
+                            tap_nav_shifted(A(S(KC_DOWN)), A(S(KC_UP)));
+                        }
                     } else {
                         tap_primary(keycode == MT_INST ? KC_F3 : KC_D);
                     }

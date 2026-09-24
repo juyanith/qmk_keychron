@@ -29,7 +29,7 @@
 #define MT_FIND RCTL_T(KC_F3)
 #define MT_INST RSFT_T(KC_1) // Primary modifier + F3 on tap
 #define MT_ADD  RALT_T(KC_1) // Primary modifier + D on tap
-#define MT_ARROW RGUI_T(KC_1) // Down on tap; Shift selects unshifted Up
+#define MT_CRSR RGUI_T(KC_1) // Platform Down shortcut on tap; Shift selects Up
 
 enum custom_keycodes {
     KC_LCAG = SAFE_RANGE,
