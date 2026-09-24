@@ -1,12 +1,25 @@
 
 #include "juyanith.h"
 
+// Shift selects an alternate action without extending a text selection.
+static void tap_nav_shifted(uint16_t normal, uint16_t shifted) {
+    const uint8_t mods = get_mods();
+    const uint8_t weak_mods = get_weak_mods();
+    const bool shift = ((mods | weak_mods) & MOD_MASK_SHIFT) != 0;
+    set_mods(mods & ~MOD_MASK_SHIFT);
+    set_weak_mods(weak_mods & ~MOD_MASK_SHIFT);
+    tap_code16(shift ? shifted : normal);
+    set_mods(mods);
+    set_weak_mods(weak_mods);
+    send_keyboard_report();
+}
+
 bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
 {
     switch (keycode) {
-        case PRIM_D: // Cmd+D on macOS; Ctrl+D elsewhere
+        case NAV_LOC: // Forward location; Shift selects backward location
             if (record->event.pressed) {
-                tap_primary(KC_D);
+                tap_nav_shifted(C(S(KC_MINS)), is_apple_os() ? C(KC_MINS) : C(A(KC_MINS)));
             }
             return false;
 
@@ -46,47 +59,18 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
             }
             break;
 
-        case MT_LBCK: // LCTL on hold, LCTL-minus on tap
-            if (record->tap.count) { // On tap
-                if (record->event.pressed) { // On press
-                    if (is_apple_os()) {
-                        tap_code16(C(KC_MINUS));
+        case MT_INST: // Right Shift on hold; Cmd/Ctrl+F3 on tap
+        case MT_ADD: // Right Alt on hold; Cmd/Ctrl+D on tap
+        case MT_ARROW: // Right Super on hold; Down or unshifted Up on tap
+            if (record->tap.count) {
+                if (record->event.pressed) {
+                    if (keycode == MT_ARROW) {
+                        tap_nav_shifted(KC_DOWN, KC_UP);
                     } else {
-                        tap_code16(A(KC_LEFT));
+                        tap_primary(keycode == MT_INST ? KC_F3 : KC_D);
                     }
                 }
-                return false;  // Skip default handling.
-            }
-            break;
-
-        case MT_CRDN: // LCTL on hold, LGUI-LALT-down on tap
-            if (record->tap.count) { // On tap
-                if (record->event.pressed) { // On press
-                    tap_primary(A(KC_DOWN));
-                }
-                return false;  // Skip default handling.
-            }
-            break;
-
-        case MT_CRUP: // LCTL on hold, LGUI-LALT-up on tap
-            if (record->tap.count) { // On tap
-                if (record->event.pressed) { // On press
-                    tap_primary(A(KC_UP));
-                }
-                return false;  // Skip default handling.
-            }
-            break;
-
-        case MT_LFWD: // LGUI on hold, LCTL-LSFT-minus on tap
-            if (record->tap.count) { // On tap
-                if (record->event.pressed) { // On press
-                    if (is_apple_os()) {
-                        tap_code16(C(S(KC_MINUS)));
-                    } else {
-                        tap_code16(A(KC_RIGHT));
-                    }
-                }
-                return false;  // Skip default handling.
+                return false;
             }
             break;
 
