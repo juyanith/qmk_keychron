@@ -66,9 +66,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [NV_LT] = LAYOUT_ansi_84(
      _______,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   _______,  _______,  RGB_TOG,
      _______,  RE_NAME,  TOG_BRP,  RUN_CNT,  STEP_OV,  STEP_IN,  STEP_OT,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
-     KC_ENT,   KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    _______,  NV_HOME,  NV_PGDN,  NV_PGUP,  NV_END,   NV_DOC,   _______,  _______,            _______,
-     _______,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    NV_BSDL,  NV_LEFT,  NV_DOWN,  NV_UP,    NV_RGHT,  NV_QUOT,          _______,            _______,
-     _______,  MT_UNDO,  MT_CUT,   MT_COPY,  MT_PSTE,  NV_LOC,   _______,  MT_FIND,  MT_RSFT,  MT_RALT,  MT_CRSR,            _______,            _______,  _______,
+     KC_ENT,   KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    NV_HOME,  NV_PGDN,  NV_PGUP,  NV_END,   NV_DOC,   KC_NO,    KC_NO,              _______,
+     _______,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    NV_BSDL,  NV_LEFT,  NV_DOWN,  NV_UP,    NV_RGHT,  NV_QUOT,            _______,            _______,
+     _______,  MT_UNDO,  MT_CUT,   MT_COPY,  MT_PSTE,  NV_LOC,   KC_NO,    MT_FIND,  MT_RSFT,  MT_RALT,  MT_CRSR,            _______,            _______,  _______,
      _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______)
 };
 
