@@ -4,10 +4,13 @@
 // QMK overrides keep movement keys held for native host repeat, while consuming
 // Shift/Alt selectors without changing the physical modifier state. Four variants
 // per action let QMK update selection/scope when modifiers change during a hold.
-#define MOVEMENT_COUNT 8
+#define MOVEMENT_COUNT 7
 #define VARIANT_COUNT (MOVEMENT_COUNT * 4)
 static key_override_t movement[VARIANT_COUNT];
 static const key_override_t *movement_ptrs[VARIANT_COUNT + 1];
+static const uint16_t movement_actions[MOVEMENT_COUNT] = {
+    NV_LEFT, NV_RGHT, NV_HOME, NV_END, NV_PGUP, NV_PGDN, NV_CURS,
+};
 
 #ifdef PRIMARY_EDITING_MODERN_OVERRIDES
 uint16_t key_override_count(void) { return VARIANT_COUNT; }
@@ -29,12 +32,12 @@ void prepare_primary_movement(void) {
             const uint8_t required = ((variant & 1) ? MOD_MASK_SHIFT : 0) |
                                      ((variant & 2) ? MOD_MASK_ALT : 0);
             movement[i] = (key_override_t){
-                .trigger = NV_LEFT + action,
+                .trigger = movement_actions[action],
                 .trigger_mods = required,
                 .negative_mod_mask = (MOD_MASK_SHIFT | MOD_MASK_ALT) & ~required,
                 .suppressed_mods = MOD_MASK_SHIFT | MOD_MASK_ALT,
                 .layers = ~(layer_state_t)0,
-                .replacement = primary_editing_key(NV_LEFT + action, apple, variant & 1, variant & 2),
+                .replacement = primary_editing_key(movement_actions[action], apple, variant & 1, variant & 2),
                 .options = ko_options_all_activations | ko_option_no_reregister_trigger,
             };
             movement_ptrs[i] = &movement[i];
