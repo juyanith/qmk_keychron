@@ -34,13 +34,14 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
         case MT_CUT:
         case MT_COPY:
         case MT_PSTE:
-        case MT_FIND:
+        case MT_RCTL:
         case MT_RSFT:
         case MT_RALT:
-        case MT_CRSR:
+        case MT_RCMD:
             if (!record->tap.count) return true; // Preserve QMK modifier holds.
             // Tap actions use the same resolver as the immediate editing keys.
         case NV_LOC:
+        case NV_FIND:
             if (record->event.pressed) tap_primary_editing(keycode);
             return false;
 
@@ -53,7 +54,7 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
         case NV_PGUP:
         case NV_PGDN:
         case NV_BSDL:
-        case NV_QUOT:
+        case NV_CURS:
             return true; // QMK key overrides handle held movement and release.
 
         case WRD_PRV: // Cmd+Left on macOS; Ctrl+Left elsewhere
