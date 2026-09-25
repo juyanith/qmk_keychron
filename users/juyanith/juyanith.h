@@ -12,8 +12,6 @@
 #define MT_DOTA MT(MOD_RALT, KC_DOT)
 #define MT_SLSG MT(MOD_RGUI, KC_SLSH)
 #define SPC_NAV LT(NV_LT, KC_SPC)
-#define NV_DPRV LSFT(LCTL(KC_TAB))
-#define NV_DOC LCTL(KC_TAB)
 #define RE_NAME KC_F2
 #define RUN_CNT KC_F5
 #define TOG_BRP KC_F9
@@ -26,10 +24,10 @@
 #define MT_CUT  LALT_T(KC_0) // KC_X
 #define MT_COPY LSFT_T(KC_0) // KC_C
 #define MT_PSTE LCTL_T(KC_0) // KC_V
-#define MT_FIND RCTL_T(KC_F3)
-#define MT_RSFT RSFT_T(KC_1) // Reserved tap; retain Right Shift hold
-#define MT_RALT RALT_T(KC_1) // Reserved tap; retain Right Alt hold
-#define MT_CRSR RGUI_T(KC_1) // Platform Down shortcut on tap; Shift selects Up
+#define MT_RCTL RCTL_T(KC_F3)
+#define MT_RSFT RSFT_T(KC_MINS) // Minus on tap; retain Right Shift hold
+#define MT_RALT RALT_T(KC_EQL) // Equals on tap; retain Right Alt hold
+#define MT_RCMD RGUI_T(KC_BSLS) // Backslash on tap; retain Right Command/Super hold
 
 enum custom_keycodes {
     KC_LCAG = SAFE_RANGE,
@@ -39,6 +37,7 @@ enum custom_keycodes {
     LINE_UP,
     MV_MTCH,
     NV_LOC,
+    NV_FIND,
     NV_LEFT,
     NV_RGHT,
     NV_DOWN,
@@ -48,7 +47,7 @@ enum custom_keycodes {
     NV_PGUP,
     NV_PGDN,
     NV_BSDL,
-    NV_QUOT,
+    NV_CURS,
 };
 
 static inline void tap_hyper(uint16_t key) {

@@ -4,15 +4,15 @@
 #include <stdint.h>
 // Independent compact key/mod encodings for testing the pure resolver.
 enum { KC_NO, KC_LEFT, KC_RGHT, KC_DOWN, KC_UP, KC_HOME, KC_END,
-       KC_PGUP, KC_PGDN, KC_DEL, KC_BSPC, KC_GRV, KC_MINS, KC_F3,
-       KC_BSLS, KC_Z, KC_Y, KC_X, KC_C, KC_V };
+       KC_PGUP, KC_PGDN, KC_DEL, KC_BSPC, KC_GRV, KC_MINS, KC_EQL, KC_F3,
+       KC_F, KC_H, KC_D, KC_BSLS, KC_Z, KC_Y, KC_X, KC_C, KC_V };
 #define S(k) ((k) | 0x100)
 #define A(k) ((k) | 0x200)
 #define C(k) ((k) | 0x400)
 #define G(k) ((k) | 0x800)
 enum { NV_LEFT, NV_RGHT, NV_DOWN, NV_UP, NV_HOME, NV_END,
-       NV_PGUP, NV_PGDN, NV_BSDL, NV_QUOT, NV_LOC,
-       MT_FIND, MT_CRSR, MT_UNDO, MT_CUT, MT_COPY, MT_PSTE, MT_RSFT, MT_RALT };
+       NV_PGUP, NV_PGDN, NV_BSDL, NV_LOC, NV_FIND, NV_CURS,
+       MT_RCTL, MT_RCMD, MT_UNDO, MT_CUT, MT_COPY, MT_PSTE, MT_RSFT, MT_RALT };
 #include "../primary_editing.h"
 struct test_case { uint16_t action; uint16_t mac[4]; uint16_t other[4]; };
 // Columns: base, Shift, Alt, Alt+Shift.
@@ -26,16 +26,17 @@ static const struct test_case cases[] = {
  {NV_PGUP,{KC_PGUP,S(KC_PGUP),KC_PGUP,S(KC_PGUP)}, {KC_PGUP,S(KC_PGUP),KC_PGUP,S(KC_PGUP)}},
  {NV_PGDN,{KC_PGDN,S(KC_PGDN),KC_PGDN,S(KC_PGDN)}, {KC_PGDN,S(KC_PGDN),KC_PGDN,S(KC_PGDN)}},
  {NV_BSDL,{KC_BSPC,KC_DEL,A(KC_BSPC),A(KC_DEL)}, {KC_BSPC,KC_DEL,C(KC_BSPC),C(KC_DEL)}},
- {NV_QUOT,{KC_NO,KC_NO,KC_GRV,KC_GRV}, {KC_NO,KC_NO,KC_GRV,KC_GRV}},
+ {NV_FIND,{G(KC_F),G(KC_F),G(A(KC_F)),G(A(KC_F))}, {C(KC_F),C(KC_F),C(KC_H),C(KC_H)}},
+ {NV_CURS,{G(A(KC_DOWN)),G(A(KC_UP)),G(KC_D),S(G(KC_D))}, {A(S(KC_DOWN)),A(S(KC_UP)),C(KC_D),S(C(KC_D))}},
  {NV_LOC,{G(KC_MINS),G(S(KC_MINS)),G(KC_MINS),G(S(KC_MINS))}, {C(A(KC_MINS)),C(S(KC_MINS)),C(A(KC_MINS)),C(S(KC_MINS))}},
- {MT_FIND,{KC_F3,S(KC_F3),G(KC_F3),G(S(KC_F3))}, {KC_F3,S(KC_F3),C(KC_F3),C(S(KC_F3))}},
- {MT_CRSR,{G(A(KC_DOWN)),G(A(KC_UP)),KC_BSLS,KC_BSLS}, {A(S(KC_DOWN)),A(S(KC_UP)),KC_BSLS,KC_BSLS}},
+ {MT_RCTL,{G(KC_F3),S(G(KC_F3)),G(KC_F3),S(G(KC_F3))}, {C(KC_F3),S(C(KC_F3)),C(KC_F3),S(C(KC_F3))}},
+ {MT_RCMD,{KC_BSLS,KC_BSLS,KC_BSLS,KC_BSLS}, {KC_BSLS,KC_BSLS,KC_BSLS,KC_BSLS}},
  {MT_UNDO,{G(KC_Z),G(S(KC_Z)),G(KC_Z),G(S(KC_Z))}, {C(KC_Z),C(KC_Y),C(KC_Z),C(KC_Y)}},
  {MT_CUT,{G(KC_X),G(KC_X),G(KC_X),G(KC_X)}, {C(KC_X),C(KC_X),C(KC_X),C(KC_X)}},
  {MT_COPY,{G(KC_C),G(KC_C),G(KC_C),G(KC_C)}, {C(KC_C),C(KC_C),C(KC_C),C(KC_C)}},
  {MT_PSTE,{G(KC_V),G(KC_V),G(KC_V),G(KC_V)}, {C(KC_V),C(KC_V),C(KC_V),C(KC_V)}},
- {MT_RSFT,{KC_NO,KC_NO,KC_NO,KC_NO}, {KC_NO,KC_NO,KC_NO,KC_NO}},
- {MT_RALT,{KC_NO,KC_NO,KC_NO,KC_NO}, {KC_NO,KC_NO,KC_NO,KC_NO}},
+ {MT_RSFT,{KC_MINS,KC_MINS,KC_MINS,KC_MINS}, {KC_MINS,KC_MINS,KC_MINS,KC_MINS}},
+ {MT_RALT,{KC_EQL,KC_EQL,KC_EQL,KC_EQL}, {KC_EQL,KC_EQL,KC_EQL,KC_EQL}},
 };
 int main(void) {
  for (unsigned i=0;i<sizeof(cases)/sizeof(cases[0]);i++)
