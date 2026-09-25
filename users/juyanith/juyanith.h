@@ -40,8 +40,6 @@ enum custom_keycodes {
     NV_FIND,
     NV_LEFT,
     NV_RGHT,
-    NV_DOWN,
-    NV_UP,
     NV_HOME,
     NV_END,
     NV_PGUP,

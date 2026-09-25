@@ -9,12 +9,6 @@ static inline uint16_t primary_editing_key(uint16_t action, bool apple, bool shi
             key = action == NV_LEFT ? KC_LEFT : KC_RGHT;
             if (alt) key = apple ? A(key) : C(key);
             break;
-        case NV_DOWN:
-        case NV_UP:
-            if (alt && shift) return KC_NO;
-            key = action == NV_DOWN ? KC_DOWN : KC_UP;
-            if (alt) return C(apple ? (action == NV_DOWN ? KC_PGDN : KC_PGUP) : key);
-            break;
         case NV_HOME:
         case NV_END:
             key = action == NV_HOME ? KC_HOME : KC_END;
