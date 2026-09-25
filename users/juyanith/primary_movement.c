@@ -4,7 +4,7 @@
 // QMK overrides keep movement keys held for native host repeat, while consuming
 // Shift/Alt selectors without changing the physical modifier state. Four variants
 // per action let QMK update selection/scope when modifiers change during a hold.
-#define MOVEMENT_COUNT 10
+#define MOVEMENT_COUNT 8
 #define VARIANT_COUNT (MOVEMENT_COUNT * 4)
 static key_override_t movement[VARIANT_COUNT];
 static const key_override_t *movement_ptrs[VARIANT_COUNT + 1];

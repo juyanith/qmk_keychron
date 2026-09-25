@@ -10,7 +10,7 @@ enum { KC_NO, KC_LEFT, KC_RGHT, KC_DOWN, KC_UP, KC_HOME, KC_END,
 #define A(k) ((k) | 0x200)
 #define C(k) ((k) | 0x400)
 #define G(k) ((k) | 0x800)
-enum { NV_LEFT, NV_RGHT, NV_DOWN, NV_UP, NV_HOME, NV_END,
+enum { NV_LEFT, NV_RGHT, NV_HOME, NV_END,
        NV_PGUP, NV_PGDN, NV_BSDL, NV_LOC, NV_FIND, NV_CURS,
        MT_RCTL, MT_RCMD, MT_UNDO, MT_CUT, MT_COPY, MT_PSTE, MT_RSFT, MT_RALT };
 #include "../primary_editing.h"
@@ -19,8 +19,6 @@ struct test_case { uint16_t action; uint16_t mac[4]; uint16_t other[4]; };
 static const struct test_case cases[] = {
  {NV_LEFT, {KC_LEFT,S(KC_LEFT),A(KC_LEFT),S(A(KC_LEFT))}, {KC_LEFT,S(KC_LEFT),C(KC_LEFT),S(C(KC_LEFT))}},
  {NV_RGHT,{KC_RGHT,S(KC_RGHT),A(KC_RGHT),S(A(KC_RGHT))}, {KC_RGHT,S(KC_RGHT),C(KC_RGHT),S(C(KC_RGHT))}},
- {NV_DOWN, {KC_DOWN,S(KC_DOWN),C(KC_PGDN),KC_NO}, {KC_DOWN,S(KC_DOWN),C(KC_DOWN),KC_NO}},
- {NV_UP,   {KC_UP,S(KC_UP),C(KC_PGUP),KC_NO}, {KC_UP,S(KC_UP),C(KC_UP),KC_NO}},
  {NV_HOME, {G(KC_LEFT),S(G(KC_LEFT)),G(KC_UP),S(G(KC_UP))}, {KC_HOME,S(KC_HOME),C(KC_HOME),S(C(KC_HOME))}},
  {NV_END, {G(KC_RGHT),S(G(KC_RGHT)),G(KC_DOWN),S(G(KC_DOWN))}, {KC_END,S(KC_END),C(KC_END),S(C(KC_END))}},
  {NV_PGUP,{KC_PGUP,S(KC_PGUP),KC_PGUP,S(KC_PGUP)}, {KC_PGUP,S(KC_PGUP),KC_PGUP,S(KC_PGUP)}},

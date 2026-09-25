@@ -6,3 +6,4 @@ SRC += 				 \
 
 KEY_OVERRIDE_ENABLE = yes
 SRC += primary_movement.c
+HOLD_ON_OTHER_KEY_PRESS_PER_KEY = yes

@@ -26,6 +26,42 @@ static void tap_primary_editing(uint16_t action) {
     send_keyboard_report();
 }
 
+static uint8_t delete_saved_mods;
+static uint8_t delete_saved_weak_mods;
+static uint16_t delete_key;
+static uint8_t delete_word_mod;
+
+static void start_primary_delete(void) {
+    const uint8_t mods = get_mods();
+    const uint8_t weak = get_weak_mods();
+    const uint8_t active = mods | weak;
+    const bool shift = active & MOD_MASK_SHIFT;
+    const bool alt = active & MOD_MASK_ALT;
+
+    delete_saved_mods = mods;
+    delete_saved_weak_mods = weak;
+    delete_key = shift ? KC_DEL : KC_BSPC;
+    delete_word_mod = alt ? (is_apple_os() ? MOD_LALT : MOD_LCTL) : 0;
+
+    if (key_override_is_enabled()) {
+        key_override_off();
+        key_override_on();
+    }
+    set_mods(mods & ~(MOD_MASK_SHIFT | MOD_MASK_ALT));
+    set_weak_mods(weak & ~(MOD_MASK_SHIFT | MOD_MASK_ALT));
+    if (delete_word_mod) register_mods(delete_word_mod);
+    register_code(delete_key);
+    send_keyboard_report();
+}
+
+static void stop_primary_delete(void) {
+    unregister_code(delete_key);
+    if (delete_word_mod) unregister_mods(delete_word_mod);
+    set_mods(delete_saved_mods);
+    set_weak_mods(delete_saved_weak_mods);
+    send_keyboard_report();
+}
+
 bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
 {
     prepare_primary_movement();
@@ -42,15 +78,20 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
             if (record->event.pressed) tap_primary_editing(keycode);
             return false;
 
+        case NV_BSDL:
+            if (record->event.pressed) {
+                start_primary_delete();
+            } else {
+                stop_primary_delete();
+            }
+            return false;
+
         case NV_LEFT:
         case NV_RGHT:
-        case NV_DOWN:
-        case NV_UP:
         case NV_HOME:
         case NV_END:
         case NV_PGUP:
         case NV_PGDN:
-        case NV_BSDL:
         case NV_CURS:
             return true; // QMK key overrides handle held movement and release.
 
@@ -115,4 +156,16 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
     }
 
     return true; // Continue default handling
+}
+
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case MT_UNDO:
+        case MT_CUT:
+        case MT_COPY:
+        case MT_PSTE:
+            return true;
+        default:
+            return false;
+    }
 }
