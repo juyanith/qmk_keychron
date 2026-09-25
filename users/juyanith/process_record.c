@@ -35,9 +35,6 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
         case MT_COPY:
         case MT_PSTE:
         case MT_RCTL:
-        case MT_RSFT:
-        case MT_RALT:
-        case MT_RCMD:
             if (!record->tap.count) return true; // Preserve QMK modifier holds.
             // Tap actions use the same resolver as the immediate editing keys.
         case NV_LOC:
