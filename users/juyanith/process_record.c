@@ -128,10 +128,15 @@ static bool process_hotkey_modtap(uint16_t keycode, keyrecord_t *record) {
     const uint8_t mod = hotkey_modtap_mod(keycode);
     if (!mod) return false;
 
+    static uint8_t saved_mods;
+    static uint8_t saved_weak_mods;
     if (record->event.pressed) {
+        saved_mods = get_mods();
+        saved_weak_mods = get_weak_mods();
         register_mods(mod);
     } else {
-        unregister_mods(mod);
+        set_mods(saved_mods);
+        set_weak_mods(saved_weak_mods);
         send_keyboard_report();
         if (record->tap.count) tap_primary_editing(keycode);
     }
