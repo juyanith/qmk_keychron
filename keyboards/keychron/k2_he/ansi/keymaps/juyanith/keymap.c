@@ -10,7 +10,7 @@ const key_override_t *key_overrides[] = {NULL};
 
 enum layers {
     MAC_BASE,
-    MAC_FN,.
+    MAC_FN,
     WIN_BASE,
     WIN_FN,
     SYMBOL,
