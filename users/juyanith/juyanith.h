@@ -14,7 +14,7 @@
 #define SPC_SYM LT(4, KC_SPC)
 #define CAPS_HK LT(5, KC_ESC)
 #define ENT_HK LT(5, KC_ENT)
-#define SYS_LAYER MO(6)
+#define SYS_LAYR MO(6)
 #define RE_NAME KC_F2
 #define RUN_CNT KC_F5
 #define TOG_BRP KC_F9
@@ -40,8 +40,7 @@
 #define SYM_CMAS RSFT_T(KC_COMM)
 #define SYM_DOTA RALT_T(KC_DOT)
 #define SYM_SLSG RGUI_T(KC_SLSH)
-#define SYS_HS(k) LCAG(k)
-#define SYS_LOCK LCG(KC_Q)
+#define SHS(k) LCAG(k)
 #define HK_SLSH RGUI_T(KC_NO)
 #define SYS_ZGUI LGUI_T(KC_NO)
 #define SYS_XALT LALT_T(KC_NO)
@@ -61,12 +60,12 @@ enum custom_keycodes {
     HK_LINE,
     HK_MATCH,
     HK_FIND,
-    HK_CURSOR,
+    HK_CURSR,
     HK_BACK,
     HK_OCCUR,
-    HK_SHRINK,
+    HK_SHRNK,
     HK_GROW,
-    SYS_LOCK_KEY,
+    SYS_LOCK,
     SYS_SHOT,
     NV_LOC,
     NV_FIND,
