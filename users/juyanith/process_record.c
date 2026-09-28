@@ -123,6 +123,10 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
         case MT_COPY:
         case MT_PSTE:
         case MT_RCTL:
+            // SYM_XALT shares the encoded LALT_T(KC_0) value with MT_CUT.
+            // While SYMBOL is active, let QMK handle the native mod-tap so
+            // a tap emits 0 instead of also running the CUT action.
+            if (get_highest_layer(layer_state) == SYMBOL_LAYER_INDEX) return true;
             if (!record->tap.count) return true; // Preserve QMK modifier holds.
             if (record->event.pressed) return true;
             // Emit completed taps on release; holds remain native QMK mod-taps.
