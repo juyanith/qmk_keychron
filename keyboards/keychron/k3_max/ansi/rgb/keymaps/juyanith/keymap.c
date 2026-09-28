@@ -78,7 +78,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
     KC_NO,    KC_NO,    HK_WORD,  HK_LINE,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    HK_MATCH, KC_NO,    KC_NO,              KC_NO,
     KC_NO,    KC_NO,    KC_NO,    KC_NO,    HK_FIND,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    HK_CURSR,           KC_NO,              KC_NO,
-    _______,  MT_UNDO,  MT_CUT,   MT_COPY,  MT_PSTE,  HK_BACK,  KC_NO,    HK_OCCUR, HK_SHRNK, HK_GROW,  HK_SLSH,            _______,            _______,  _______,
+        _______,  HK_UNDO,  HK_CUT,   HK_COPY,  HK_PSTE,  HK_BACK,  KC_NO,    HK_OCCUR, HK_SHRNK, HK_GROW,  HK_SLSH,            _______,            _______,  _______,
     _______,  _______,  _______,                                SYS_LAYR,                               _______,  _______,  _______,  _______,  _______,  _______),
 
 [SYSTEM] = LAYOUT_ansi_84(
