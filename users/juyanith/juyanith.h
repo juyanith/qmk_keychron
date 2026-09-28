@@ -11,10 +11,10 @@
 #define MT_CMAS MT(MOD_RSFT, KC_COMM)
 #define MT_DOTA MT(MOD_RALT, KC_DOT)
 #define MT_SLSG MT(MOD_RGUI, KC_SLSH)
-#define SPC_SYM LT(SYMBOL, KC_SPC)
-#define CAPS_HK LT(HOTKEY, KC_ESC)
-#define ENT_HK LT(HOTKEY, KC_ENT)
-#define SYS_LAYER MO(SYSTEM)
+#define SPC_SYM LT(4, KC_SPC)
+#define CAPS_HK LT(5, KC_ESC)
+#define ENT_HK LT(5, KC_ENT)
+#define SYS_LAYER MO(6)
 #define RE_NAME KC_F2
 #define RUN_CNT KC_F5
 #define TOG_BRP KC_F9
