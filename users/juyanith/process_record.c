@@ -231,6 +231,8 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case CAPS_HK:
+        case ENT_HK:
         case MT_UNDO:
         case MT_CUT:
         case MT_COPY:
