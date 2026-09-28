@@ -71,8 +71,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [SYSTEM] = LAYOUT_ansi_84(
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
         _______,  SHS(KC_1),SHS(KC_2),SHS(KC_3),SHS(KC_4),SHS(KC_5),KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,              KC_NO,
-        KC_NO,    SYS_LOCK, KC_NO,    SHS(KC_E),KC_NO,    SHS(KC_T),KC_NO,    SHS(KC_U),SHS(KC_I),SHS(KC_O),SHS(KC_P),SHS(KC_LBRC),KC_NO, KC_NO,              KC_NO,
-        KC_NO,    KC_NO,    KC_NO,    KC_NO,    SHS(KC_F),SHS(KC_G),KC_NO,    SHS(KC_J),SHS(KC_K),SHS(KC_L),SHS(KC_SCLN),KC_NO,           KC_NO,              KC_NO,
+        KC_NO,    SYS_LOCK, KC_NO,    SHS(KC_E),KC_NO,    SHS(KC_T),KC_NO,    SHS(KC_U),SHS(KC_I),SHS(KC_O),SHS(KC_P),SHS(KC_LBRC),KC_NO,    KC_NO,              KC_NO,
+        KC_NO,    KC_NO,    KC_NO,    KC_NO,    SHS(KC_F),SHS(KC_G),KC_NO,    SHS(KC_J),SHS(KC_K),SHS(KC_L),SHS(KC_SCLN),KC_NO,              KC_NO,              KC_NO,
         _______,  SYS_ZGUI, SYS_XALT, SYS_CSFT, SYS_VCTL, SHS(KC_B),SHS(KC_N),MT_MCTL,  MT_CMAS,  MT_DOTA,  MT_SLSG,            _______,            _______,  _______,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______)
 };
