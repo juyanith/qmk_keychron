@@ -230,6 +230,11 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
 }
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    // SYMBOL reuses some of the same mod-tap encodings as HOTKEY.  Keep
+    // rolling SYMBOL taps (Z X C V -> 9 0 - =) from being classified as
+    // holds by the HOTKEY policy.
+    if (get_highest_layer(layer_state) == SYMBOL_LAYER_INDEX) return false;
+
     switch (keycode) {
         case CAPS_HK:
         case ENT_HK:

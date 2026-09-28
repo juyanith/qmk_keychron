@@ -43,6 +43,11 @@ void prepare_primary_movement(void) {
             movement_ptrs[i] = &movement[i];
         }
     }
+#ifndef PRIMARY_EDITING_MODERN_OVERRIDES
+    // The legacy key_override API counts entries until this terminator.
+    // Without it, QMK reads one pointer past the valid override table.
+    movement_ptrs[VARIANT_COUNT] = NULL;
+#endif
     last_apple = apple;
     initialized = true;
 }
