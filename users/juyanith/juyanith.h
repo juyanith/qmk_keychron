@@ -43,6 +43,11 @@
 #define SYS_HS(k) LCAG(k)
 #define SYS_LOCK LCG(KC_Q)
 #define HK_SLSH RGUI_T(KC_NO)
+#define SYS_ZGUI LGUI_T(KC_NO)
+#define SYS_XALT LALT_T(KC_NO)
+#define SYS_VCTL LCTL_T(KC_NO)
+#define SYS_CSFT MT_CSFT
+#define SYSTEM_LAYER_INDEX 6
 
 enum custom_keycodes {
     KC_LCAG = SAFE_RANGE,
