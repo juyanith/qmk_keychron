@@ -47,6 +47,7 @@
 #define SYS_XALT LALT_T(KC_NO)
 #define SYS_VCTL LCTL_T(KC_NO)
 #define SYS_CSFT MT_CSFT
+#define SYMBOL_LAYER_INDEX 4
 #define SYSTEM_LAYER_INDEX 6
 
 enum custom_keycodes {
