@@ -103,7 +103,10 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
         case MT_PSTE:
         case MT_RCTL:
             if (!record->tap.count) return true; // Preserve QMK modifier holds.
-            // Tap actions use the same resolver as the immediate editing keys.
+            if (record->event.pressed) return true;
+            // Emit completed taps on release; holds remain native QMK mod-taps.
+            tap_primary_editing(keycode);
+            return false;
         case NV_LOC:
         case NV_FIND:
             if (record->event.pressed) tap_primary_editing(keycode);
