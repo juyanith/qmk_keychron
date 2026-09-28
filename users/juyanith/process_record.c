@@ -62,6 +62,37 @@ static void stop_primary_delete(void) {
     send_keyboard_report();
 }
 
+static void tap_hotkey(uint16_t keycode) {
+    const uint8_t mods = get_mods();
+    const uint8_t weak = get_weak_mods();
+    const uint8_t active = mods | weak;
+    const bool apple = is_apple_os();
+    const bool shift = active & MOD_MASK_SHIFT;
+    const bool alt = active & MOD_MASK_ALT;
+    uint16_t key = KC_NO;
+
+    switch (keycode) {
+        case HK_WORD:   key = apple ? G(KC_D) : C(KC_D); break;
+        case HK_LINE:   key = apple ? G(KC_L) : C(KC_L); break;
+        case HK_FIND:   key = alt ? (apple ? G(A(KC_F)) : C(KC_H)) : (apple ? G(KC_F) : C(KC_F)); break;
+        case HK_MATCH:  key = apple ? G(A(S(KC_BSLS))) : C(S(KC_BSLS)); break;
+        case HK_BACK:   key = apple ? C(shift ? S(KC_MINS) : KC_MINS) : C(shift ? S(KC_MINS) : A(KC_MINS)); break;
+        case HK_CURSOR: key = alt ? (apple ? A(G(KC_D)) : A(C(KC_D))) : (apple ? G(A(shift ? KC_UP : KC_DOWN)) : A(S(shift ? KC_UP : KC_DOWN))); break;
+        case HK_OCCUR:  key = apple ? G(KC_F3) : C(KC_F3); break;
+        case HK_SHRINK: key = apple ? C(S(G(KC_LEFT))) : A(S(KC_LEFT)); break;
+        case HK_GROW:   key = apple ? C(S(G(KC_RGHT))) : A(S(KC_RGHT)); break;
+        case SYS_LOCK_KEY: key = apple ? G(C(KC_Q)) : LCAG(KC_Q); break;
+        case SYS_SHOT: key = apple ? G(S(KC_3)) : KC_PSCR; break;
+        default: return;
+    }
+    set_mods(mods & ~(MOD_MASK_SHIFT | MOD_MASK_ALT));
+    set_weak_mods(weak & ~(MOD_MASK_SHIFT | MOD_MASK_ALT));
+    tap_code16(key);
+    set_mods(mods);
+    set_weak_mods(weak);
+    send_keyboard_report();
+}
+
 bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
 {
     prepare_primary_movement();
@@ -84,6 +115,22 @@ bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
             } else {
                 stop_primary_delete();
             }
+            return false;
+
+        case HK_WORD:
+        case HK_LINE:
+        case HK_MATCH:
+        case HK_CURSOR:
+        case HK_BACK:
+        case HK_OCCUR:
+        case HK_SHRINK:
+        case HK_GROW:
+            if (record->event.pressed) tap_hotkey(keycode);
+            return false;
+
+        case SYS_LOCK_KEY:
+        case SYS_SHOT:
+            if (record->event.pressed) tap_hotkey(keycode);
             return false;
 
         case NV_LEFT:
