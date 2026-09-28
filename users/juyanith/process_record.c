@@ -115,11 +115,21 @@ static void tap_hotkey(uint16_t keycode) {
 
 static uint8_t hotkey_modtap_mod(uint16_t keycode) {
     switch (keycode) {
-        case MT_UNDO: return MOD_LGUI;
-        case MT_CUT:  return MOD_LALT;
-        case MT_COPY: return MOD_LSFT;
-        case MT_PSTE: return MOD_LCTL;
+        case HK_UNDO: return MOD_LGUI;
+        case HK_CUT:  return MOD_LALT;
+        case HK_COPY: return MOD_LSFT;
+        case HK_PSTE: return MOD_LCTL;
         default:      return 0;
+    }
+}
+
+static uint16_t hotkey_modtap_action(uint16_t keycode) {
+    switch (keycode) {
+        case HK_UNDO: return MT_UNDO;
+        case HK_CUT:  return MT_CUT;
+        case HK_COPY: return MT_COPY;
+        case HK_PSTE: return MT_PSTE;
+        default:      return KC_NO;
     }
 }
 
@@ -138,7 +148,7 @@ static bool process_hotkey_modtap(uint16_t keycode, keyrecord_t *record) {
         set_mods(saved_mods);
         set_weak_mods(saved_weak_mods);
         send_keyboard_report();
-        if (record->tap.count) tap_primary_editing(keycode);
+        if (record->tap.count) tap_primary_editing(hotkey_modtap_action(keycode));
     }
     return true;
 }
