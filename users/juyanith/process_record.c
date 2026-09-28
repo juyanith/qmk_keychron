@@ -30,7 +30,6 @@ static uint8_t delete_saved_mods;
 static uint8_t delete_saved_weak_mods;
 static uint16_t delete_key;
 static uint8_t delete_word_mod;
-
 static void start_primary_delete(void) {
     const uint8_t mods = get_mods();
     const uint8_t weak = get_weak_mods();
@@ -62,6 +61,22 @@ static void stop_primary_delete(void) {
     send_keyboard_report();
 }
 
+static bool process_system_modtap(uint16_t keycode, keyrecord_t *record) {
+    if (get_highest_layer(layer_state) != SYSTEM_LAYER_INDEX) return false;
+    uint16_t tap_key = KC_NO;
+    switch (keycode) {
+        case MT_CSFT: tap_key = LCAG(KC_C); break;
+        case MT_MCTL: tap_key = LCAG(KC_M); break;
+        case MT_CMAS: tap_key = LCAG(KC_COMM); break;
+        case MT_DOTA: tap_key = LCAG(KC_DOT); break;
+        case MT_SLSG: tap_key = LCAG(KC_SLSH); break;
+        default: return false;
+    }
+    if (!record->tap.count || record->event.pressed) return false;
+    tap_code16(tap_key);
+    return true;
+}
+
 static void tap_hotkey(uint16_t keycode) {
     const uint8_t mods = get_mods();
     const uint8_t weak = get_weak_mods();
@@ -75,7 +90,10 @@ static void tap_hotkey(uint16_t keycode) {
         case HK_WORD:   key = apple ? G(KC_D) : C(KC_D); break;
         case HK_LINE:   key = apple ? G(KC_L) : C(KC_L); break;
         case HK_FIND:   key = alt ? (apple ? G(A(KC_F)) : C(KC_H)) : (apple ? G(KC_F) : C(KC_F)); break;
-        case HK_MATCH:  key = apple ? G(A(S(KC_BSLS))) : C(S(KC_BSLS)); break;
+        case HK_MATCH:
+            key = apple ? G(S(KC_BSLS)) : C(S(KC_BSLS));
+            if (alt || shift) key = A(key);
+            break;
         case HK_BACK:   key = apple ? C(shift ? S(KC_MINS) : KC_MINS) : C(shift ? S(KC_MINS) : A(KC_MINS)); break;
         case HK_CURSOR: key = alt ? (apple ? A(G(KC_D)) : A(C(KC_D))) : (apple ? G(A(shift ? KC_UP : KC_DOWN)) : A(S(shift ? KC_UP : KC_DOWN))); break;
         case HK_OCCUR:  key = apple ? G(KC_F3) : C(KC_F3); break;
@@ -85,8 +103,10 @@ static void tap_hotkey(uint16_t keycode) {
         case SYS_SHOT: key = apple ? G(S(KC_3)) : KC_PSCR; break;
         default: return;
     }
-    set_mods(mods & ~(MOD_MASK_SHIFT | MOD_MASK_ALT));
-    set_weak_mods(weak & ~(MOD_MASK_SHIFT | MOD_MASK_ALT));
+    const uint8_t selectors = keycode == HK_OCCUR ? MOD_MASK_ALT : (MOD_MASK_SHIFT | MOD_MASK_ALT);
+    set_mods(mods & ~selectors);
+    set_weak_mods(weak & ~selectors);
+    send_keyboard_report();
     tap_code16(key);
     set_mods(mods);
     set_weak_mods(weak);
@@ -96,6 +116,7 @@ static void tap_hotkey(uint16_t keycode) {
 bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
 {
     prepare_primary_movement();
+    if (process_system_modtap(keycode, record)) return false;
     switch (keycode) {
         case MT_UNDO:
         case MT_CUT:

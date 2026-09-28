@@ -66,14 +66,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,    KC_NO,    HK_WORD,  HK_LINE,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    HK_MATCH, KC_NO,    KC_NO,              KC_NO,
         KC_NO,    KC_NO,    KC_NO,    KC_NO,    HK_FIND,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    HK_CURSOR,         KC_NO,              KC_NO,
         _______,  MT_UNDO,  MT_CUT,   MT_COPY,  MT_PSTE,  HK_BACK,  KC_NO,    HK_OCCUR, HK_SHRINK,HK_GROW,  HK_SLSH,            _______,            _______,  _______,
-        SYS_LAYER,_______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______),
+        _______,  _______,  _______,                                SYS_LAYER,                                _______,  _______,  _______,  _______,  _______,  _______),
 
     [SYSTEM] = LAYOUT_ansi_84(
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
         _______,  SYS_HS(KC_1), SYS_HS(KC_2), SYS_HS(KC_3), SYS_HS(KC_4), SYS_HS(KC_5), KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,              KC_NO,
         KC_NO,    SYS_LOCK_KEY, KC_NO,    SYS_HS(KC_E), KC_NO,    SYS_HS(KC_T), KC_NO,    SYS_HS(KC_U), SYS_HS(KC_I), SYS_HS(KC_O), SYS_HS(KC_P), SYS_HS(KC_LBRC), KC_NO,    KC_NO,              KC_NO,
         KC_NO,    KC_NO,    KC_NO,    KC_NO,    SYS_HS(KC_F), SYS_HS(KC_G), KC_NO,    SYS_HS(KC_J), SYS_HS(KC_K), SYS_HS(KC_L), SYS_HS(KC_SCLN), KC_NO,              KC_NO,              KC_NO,
-        _______,  KC_NO,    KC_NO,    SYS_HS(KC_C), KC_NO,    SYS_HS(KC_B), SYS_HS(KC_N), SYS_HS(KC_M), SYS_HS(KC_COMM), SYS_HS(KC_DOT), SYS_HS(KC_SLSH),            _______,            _______,  _______,
+        _______,  SYS_ZGUI, SYS_XALT, SYS_CSFT, SYS_VCTL, SYS_HS(KC_B), SYS_HS(KC_N), MT_MCTL,  MT_CMAS,  MT_DOTA,  MT_SLSG,            _______,            _______,  _______,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______)
 };
 
