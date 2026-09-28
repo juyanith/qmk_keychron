@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  SYS_HS(KC_1), SYS_HS(KC_2), SYS_HS(KC_3), SYS_HS(KC_4), SYS_HS(KC_5), KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,              KC_NO,
         KC_NO,    SYS_LOCK_KEY, KC_NO,    SYS_HS(KC_E), KC_NO,    SYS_HS(KC_T), KC_NO,    SYS_HS(KC_U), SYS_HS(KC_I), SYS_HS(KC_O), SYS_HS(KC_P), SYS_HS(KC_LBRC), KC_NO,    KC_NO,              KC_NO,
         KC_NO,    KC_NO,    KC_NO,    KC_NO,    SYS_HS(KC_F), SYS_HS(KC_G), KC_NO,    SYS_HS(KC_J), SYS_HS(KC_K), SYS_HS(KC_L), SYS_HS(KC_SCLN), KC_NO,              KC_NO,              KC_NO,
-        _______,  SYS_ZGUI, SYS_XALT, SYS_CSFT, SYS_VCTL, SYS_HS(KC_B), SYS_HS(KC_N), MT_MCTL,  MT_CMAS,  MT_DOTA,  MT_SLSG,            _______,            _______,  _______
+        _______,  SYS_ZGUI, SYS_XALT, SYS_CSFT, SYS_VCTL, SYS_HS(KC_B), SYS_HS(KC_N), MT_MCTL,  MT_CMAS,  MT_DOTA,  MT_SLSG,            _______,            _______,  _______,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______)
 
 };
