@@ -132,6 +132,7 @@ static bool process_hotkey_modtap(uint16_t keycode, keyrecord_t *record) {
         register_mods(mod);
     } else {
         unregister_mods(mod);
+        send_keyboard_report();
         if (record->tap.count) tap_primary_editing(keycode);
     }
     return true;
