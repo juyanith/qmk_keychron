@@ -113,10 +113,35 @@ static void tap_hotkey(uint16_t keycode) {
     send_keyboard_report();
 }
 
+static uint8_t hotkey_modtap_mod(uint16_t keycode) {
+    switch (keycode) {
+        case MT_UNDO: return MOD_LGUI;
+        case MT_CUT:  return MOD_LALT;
+        case MT_COPY: return MOD_LSFT;
+        case MT_PSTE: return MOD_LCTL;
+        default:      return 0;
+    }
+}
+
+static bool process_hotkey_modtap(uint16_t keycode, keyrecord_t *record) {
+    if (get_highest_layer(layer_state) != HOTKEY_LAYER_INDEX) return false;
+    const uint8_t mod = hotkey_modtap_mod(keycode);
+    if (!mod) return false;
+
+    if (record->event.pressed) {
+        register_mods(mod);
+    } else {
+        unregister_mods(mod);
+        if (record->tap.count) tap_primary_editing(keycode);
+    }
+    return true;
+}
+
 bool process_record_juyanith(uint16_t keycode, keyrecord_t* record)
 {
     prepare_primary_movement();
     if (process_system_modtap(keycode, record)) return false;
+    if (process_hotkey_modtap(keycode, record)) return false;
     switch (keycode) {
         case MT_UNDO:
         case MT_CUT:
