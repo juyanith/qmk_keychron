@@ -69,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
         _______,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_INS,   SYS_SHOT,  KC_NO,              KC_NO,
         KC_ENT,   KC_1,     KC_2,     KC_3,     KC_4,     KC_TAB,   KC_NO,    NV_HOME,  NV_PGDN,  NV_PGUP,  NV_END,   KC_LBRC,  KC_RBRC,  KC_NO,              KC_NO,
-        SYS_LAYER,KC_5,     KC_6,     KC_7,     KC_8,     KC_BSPC,  KC_DEL,   NV_LEFT,  KC_DOWN,  KC_UP,    NV_RGHT,  KC_QUOT,              SYS_LAYER,         KC_NO,
+        SYS_LAYR,KC_5,     KC_6,     KC_7,     KC_8,     KC_BSPC,  KC_DEL,   NV_LEFT,  KC_DOWN,  KC_UP,    NV_RGHT,  KC_QUOT,              SYS_LAYR,         KC_NO,
         _______,  SYM_ZGUI, SYM_XALT, SYM_CSFT, SYM_VCTL, KC_BSLS,  KC_SPC,   SYM_MCTL, SYM_CMAS, SYM_DOTA, SYM_SLSG,            _______,            _______,  _______,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______),
 
@@ -77,16 +77,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
         KC_NO,    KC_NO,    HK_WORD,  HK_LINE,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    HK_MATCH, KC_NO,    KC_NO,              KC_NO,
-        KC_NO,    KC_NO,    KC_NO,    KC_NO,    HK_FIND,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    HK_CURSOR,         KC_NO,              KC_NO,
-        _______,  MT_UNDO,  MT_CUT,   MT_COPY,  MT_PSTE,  HK_BACK,  KC_NO,    HK_OCCUR, HK_SHRINK,HK_GROW,  HK_SLSH,            _______,            _______,  _______,
-        _______,  _______,  _______,                                SYS_LAYER,                                _______,  _______,  _______,  _______,  _______,  _______),
+        KC_NO,    KC_NO,    KC_NO,    KC_NO,    HK_FIND,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    HK_CURSR,         KC_NO,              KC_NO,
+        _______,  MT_UNDO,  MT_CUT,   MT_COPY,  MT_PSTE,  HK_BACK,  KC_NO,    HK_OCCUR, HK_SHRNK,HK_GROW,  HK_SLSH,            _______,            _______,  _______,
+        _______,  _______,  _______,                                SYS_LAYR,                                _______,  _______,  _______,  _______,  _______,  _______),
 
     [SYSTEM] = LAYOUT_ansi_84(
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-        _______,  SYS_HS(KC_1), SYS_HS(KC_2), SYS_HS(KC_3), SYS_HS(KC_4), SYS_HS(KC_5), KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,              KC_NO,
-        KC_NO,    SYS_LOCK_KEY, KC_NO,    SYS_HS(KC_E), KC_NO,    SYS_HS(KC_T), KC_NO,    SYS_HS(KC_U), SYS_HS(KC_I), SYS_HS(KC_O), SYS_HS(KC_P), SYS_HS(KC_LBRC), KC_NO,    KC_NO,              KC_NO,
-        KC_NO,    KC_NO,    KC_NO,    KC_NO,    SYS_HS(KC_F), SYS_HS(KC_G), KC_NO,    SYS_HS(KC_J), SYS_HS(KC_K), SYS_HS(KC_L), SYS_HS(KC_SCLN), KC_NO,              KC_NO,              KC_NO,
-        _______,  SYS_ZGUI, SYS_XALT, SYS_CSFT, SYS_VCTL, SYS_HS(KC_B), SYS_HS(KC_N), MT_MCTL,  MT_CMAS,  MT_DOTA,  MT_SLSG,            _______,            _______,  _______,
+        _______,  SHS(KC_1), SHS(KC_2), SHS(KC_3), SHS(KC_4), SHS(KC_5), KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,              KC_NO,
+        KC_NO,    SYS_LOCK, KC_NO,    SHS(KC_E), KC_NO,    SHS(KC_T), KC_NO,    SHS(KC_U), SHS(KC_I), SHS(KC_O), SHS(KC_P), SHS(KC_LBRC), KC_NO,    KC_NO,              KC_NO,
+        KC_NO,    KC_NO,    KC_NO,    KC_NO,    SHS(KC_F), SHS(KC_G), KC_NO,    SHS(KC_J), SHS(KC_K), SHS(KC_L), SHS(KC_SCLN), KC_NO,              KC_NO,              KC_NO,
+        _______,  SYS_ZGUI, SYS_XALT, SYS_CSFT, SYS_VCTL, SHS(KC_B), SHS(KC_N), MT_MCTL,  MT_CMAS,  MT_DOTA,  MT_SLSG,            _______,            _______,  _______,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______)
 
 };
