@@ -27,8 +27,6 @@ enum layers {
     WIN_BASE,
     WIN_FN,
     SYMBOL,
-    HOTKEY,
-    SYSTEM,
 };
 
 // clang-format off
@@ -37,8 +35,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,   KC_BRID,  KC_BRIU,  KC_MCTRL, KC_LNPAD, RGB_VAD,  RGB_VAI,  KC_MPRV,  KC_MPLY,  KC_MNXT,  KC_MUTE,  KC_VOLD,  KC_VOLU,  KC_SNAP,  KC_DEL,   RGB_MOD,
     KC_GRV,   KC_1,     KC_2,     KC_3,     KC_4,     KC_5,     KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,            KC_PGUP,
     TAB_HYPR, KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,     KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_LBRC,  KC_RBRC,  KC_BSLS,            KC_PGDN,
-    CAPS_HK,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,     KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,            ENT_HK,             KC_HOME,
-    KC_LSFT,  MT_ZGUI,  MT_XALT,  MT_CSFT,  MT_VCTL,  KC_B,     KC_N,     MT_MCTL,  MT_CMAS,  MT_DOTA,  MT_SLSG,            KC_RSFT,            KC_UP,    KC_END,
+    CAPS_HK,  HRM_A,    HRM_S,    HRM_D,    HRM_F,    KC_G,     KC_H,     HRM_J,    HRM_K,    HRM_L,    HRM_SEMI, KC_QUOT,            ENT_HK,             KC_HOME,
+    KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,     KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,            KC_RSFT,            KC_UP,    KC_END,
     KC_LCTL,  KC_LOPTN, KC_LCMMD,                               SPC_SYM,                                KC_RCMMD, FN_MAC,   KC_RCTL,  KC_LEFT,  KC_DOWN,  KC_RGHT),
 
 [MAC_FN] = LAYOUT_ansi_84(
@@ -67,28 +65,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [SYMBOL] = LAYOUT_ansi_84(
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    _______,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_INS,   SYS_SHOT, KC_NO,              KC_NO,
-    KC_ENT,   KC_1,     KC_2,     KC_3,     KC_4,     KC_TAB,   KC_NO,    NV_HOME,  NV_PGDN,  NV_PGUP,  NV_END,   KC_LBRC,  KC_RBRC,  KC_NO,              KC_NO,
-    SYS_LAYR, KC_5,     KC_6,     KC_7,     KC_8,     KC_BSPC,  KC_DEL,   NV_LEFT,  KC_DOWN,  KC_UP,    NV_RGHT,  KC_QUOT,            SYS_LAYR,         KC_NO,
-    _______,  SYM_ZGUI, SYM_XALT, SYM_CSFT, SYM_VCTL, KC_BSLS,  KC_SPC,   SYM_MCTL, SYM_CMAS, SYM_DOTA, SYM_SLSG,           _______,            _______,  _______,
-    _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______),
-
-[HOTKEY] = LAYOUT_ansi_84(
-    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
-    KC_NO,    KC_NO,    HK_WORD,  HK_LINE,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    HK_MATCH, KC_NO,    KC_NO,              KC_NO,
-    KC_NO,    KC_NO,    KC_NO,    KC_NO,    HK_FIND,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    HK_CURSR,           KC_NO,              KC_NO,
-        _______,  HK_UNDO,  HK_CUT,   HK_COPY,  HK_PSTE,  HK_BACK,  KC_NO,    HK_OCCUR, HK_SHRNK, HK_GROW,  HK_SLSH,            _______,            _______,  _______,
-    _______,  _______,  _______,                                SYS_LAYR,                               _______,  _______,  _______,  _______,  _______,  _______),
-
-[SYSTEM] = LAYOUT_ansi_84(
-    _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    _______,  SHS(KC_1),SHS(KC_2),SHS(KC_3),SHS(KC_4),SHS(KC_5),KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,              KC_NO,
-    KC_NO,    SYS_LOCK, KC_NO,    SHS(KC_E),KC_NO,    SHS(KC_T),KC_NO,    SHS(KC_U),SHS(KC_I),SHS(KC_O),SHS(KC_P),SHS(KC_LBRC),KC_NO, KC_NO,              KC_NO,
-    KC_NO,    KC_NO,    KC_NO,    KC_NO,    SHS(KC_F),SHS(KC_G),KC_NO,    SHS(KC_J),SHS(KC_K),SHS(KC_L),SHS(KC_SCLN),KC_NO,           KC_NO,              KC_NO,
-    _______,  SYS_ZGUI, SYS_XALT, SYS_CSFT, SYS_VCTL, SHS(KC_B),SHS(KC_N),MT_MCTL,  MT_CMAS,  MT_DOTA,  MT_SLSG,            _______,            _______,  _______,
+    _______,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_INS,   SYM_SHOT,  KC_NO,              _______,
+    KC_ENT,   KC_1,     KC_2,     KC_3,     KC_4,     KC_TAB,   KC_NO,    KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_LBRC,  KC_RBRC,  KC_NO,              _______,
+    _______,  SYM_A,    SYM_S,    SYM_D,    SYM_F,    KC_BSPC,  KC_DEL,   SYM_J,    SYM_K,    SYM_L,    SYM_SEMI, KC_QUOT,            _______,            _______,
+    _______,  KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSLS,  KC_SPC,   KC_GRV,   KC_COMM,  KC_DOT,   KC_SLSH,            _______,            _______,  _______,
     _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______)
-
 };
 
 // clang-format on

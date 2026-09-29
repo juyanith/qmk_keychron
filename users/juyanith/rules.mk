@@ -1,9 +1,5 @@
 CAPS_WORD_ENABLE = yes
 OS_DETECTION_ENABLE = yes
-
-SRC += 				 \
-	process_record.c
-
-KEY_OVERRIDE_ENABLE = yes
-SRC += primary_movement.c
-HOLD_ON_OTHER_KEY_PRESS_PER_KEY = yes
+PERMISSIVE_HOLD = yes
+TAPPING_TERM = 200
+SRC += process_record.c
