@@ -3,114 +3,48 @@
 #include QMK_KEYBOARD_H
 #include "os_detection.h"
 
-#define MT_ZGUI MT(MOD_LGUI, KC_Z)
-#define MT_XALT MT(MOD_LALT, KC_X)
-#define MT_CSFT MT(MOD_LSFT, KC_C)
-#define MT_VCTL MT(MOD_LCTL, KC_V)
-#define MT_MCTL MT(MOD_RCTL, KC_M)
-#define MT_CMAS MT(MOD_RSFT, KC_COMM)
-#define MT_DOTA MT(MOD_RALT, KC_DOT)
-#define MT_SLSG MT(MOD_RGUI, KC_SLSH)
-#define SPC_SYM LT(4, KC_SPC)
-#define CAPS_HK LT(5, KC_ESC)
-#define ENT_HK LT(5, KC_ENT)
-#define SYS_LAYR MO(6)
+#define SPC_SYM LT(SYMBOL, KC_SPC)
+#define CAPS_HK HYPR_T(KC_ESC)
+#define ENT_HK HYPR_T(KC_ENT)
+#define TAB_HYPR HYPR_T(KC_TAB)
+#define FN_MAC MO(MAC_FN)
+#define FN_WIN MO(WIN_FN)
+
+/* MAC_BASE home-row mods: secondary, alt, primary, shift. */
+#define HRM_A LCTL_T(KC_A)
+#define HRM_S LALT_T(KC_S)
+#define HRM_D LGUI_T(KC_D)
+#define HRM_F LSFT_T(KC_F)
+#define HRM_J RSFT_T(KC_J)
+#define HRM_K RGUI_T(KC_K)
+#define HRM_L RALT_T(KC_L)
+#define HRM_SEMI RCTL_T(KC_SCLN)
+
+/* SYMBOL home-row mods keep the same physical modifier positions. */
+#define SYM_A LCTL_T(KC_5)
+#define SYM_S LALT_T(KC_6)
+#define SYM_D LGUI_T(KC_7)
+#define SYM_F LSFT_T(KC_8)
+#define SYM_J RSFT_T(KC_LEFT)
+#define SYM_K RGUI_T(KC_DOWN)
+#define SYM_L RALT_T(KC_UP)
+#define SYM_SEMI RCTL_T(KC_RGHT)
+
 #define RE_NAME KC_F2
 #define RUN_CNT KC_F5
 #define TOG_BRP KC_F9
 #define STEP_IN KC_F11
 #define STEP_OT LSFT(KC_F11)
 #define STEP_OV KC_F10
-#define MT_LCAG LCAG_T(KC_ESC)
-#define TAB_HYPR HYPR_T(KC_TAB)
-#define MT_UNDO LGUI_T(KC_0) // KC_Z
-#define MT_CUT  LALT_T(KC_0) // KC_X
-#define MT_COPY LSFT_T(KC_0) // KC_C
-#define MT_PSTE LCTL_T(KC_0) // KC_V
-#define MT_RCTL RCTL_T(KC_F3)
-#define MT_RSFT RSFT_T(KC_MINS) // Minus on tap; retain Right Shift hold
-#define MT_RALT RALT_T(KC_EQL) // Equals on tap; retain Right Alt hold
-#define MT_RCMD RGUI_T(KC_BSLS) // Backslash on tap; retain Right Command/Super hold
-
-#define SYM_ZGUI LGUI_T(KC_9)
-#define SYM_XALT LALT_T(KC_0)
-#define SYM_CSFT LSFT_T(KC_MINS)
-#define SYM_VCTL LCTL_T(KC_EQL)
-#define SYM_MCTL RCTL_T(KC_GRV)
-#define SYM_CMAS RSFT_T(KC_COMM)
-#define SYM_DOTA RALT_T(KC_DOT)
-#define SYM_SLSG RGUI_T(KC_SLSH)
-#define SHS(k) LCAG(k)
-#define HK_SLSH RGUI_T(KC_NO)
-#define SYS_ZGUI LGUI_T(KC_NO)
-#define SYS_XALT LALT_T(KC_NO)
-#define SYS_VCTL LCTL_T(KC_NO)
-#define SYS_CSFT MT_CSFT
-#define SYMBOL_LAYER_INDEX 4
-#define HOTKEY_LAYER_INDEX 5
-#define SYSTEM_LAYER_INDEX 6
+#define SHS(k) LSFT(k)
 
 enum custom_keycodes {
-    KC_LCAG = SAFE_RANGE,
-    WRD_PRV,
-    WRD_NXT,
-    LINE_DN,
-    LINE_UP,
-    MV_MTCH,
-    HK_UNDO,
-    HK_CUT,
-    HK_COPY,
-    HK_PSTE,
-    HK_WORD,
-    HK_LINE,
-    HK_MATCH,
-    HK_FIND,
-    HK_CURSR,
-    HK_BACK,
-    HK_OCCUR,
-    HK_SHRNK,
-    HK_GROW,
-    SYS_LOCK,
-    SYS_SHOT,
-    NV_LOC,
-    NV_FIND,
-    NV_LEFT,
-    NV_RGHT,
-    NV_HOME,
-    NV_END,
-    NV_PGUP,
-    NV_PGDN,
-    NV_BSDL,
-    NV_CURS,
+    SYM_SHOT = SAFE_RANGE,
 };
 
-static inline void tap_hyper(uint16_t key) {
-    tap_code16(C(A(G(S(key)))));
-}
-
-static inline void tap_super(uint16_t key) {
-    tap_code16(C(A(G(key))));
-}
-
 static inline bool is_apple_os(void) {
-    os_variant_t detected_os = detected_host_os();
-    return detected_os == OS_MACOS
-        || detected_os == OS_IOS;
+    const os_variant_t os = detected_host_os();
+    return os == OS_MACOS || os == OS_IOS;
 }
 
-// Helper: determine "primary modifier": Cmd on mac, Ctrl on win/linux
-static inline uint8_t primary_mod(void) {
-    return is_apple_os() ? MOD_LGUI : MOD_LCTL;
-}
-
-static inline void tap_primary(uint16_t key) {
-    if (is_apple_os()) {
-        tap_code16(G(key));
-    } else {
-        tap_code16(C(key));
-    }
-}
-
-bool process_record_juyanith(uint16_t keycode, keyrecord_t* record);
-
-void prepare_primary_movement(void);
+bool process_record_juyanith(uint16_t keycode, keyrecord_t *record);
