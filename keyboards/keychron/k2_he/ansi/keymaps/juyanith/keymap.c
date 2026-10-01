@@ -49,10 +49,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [SYMBOL] = LAYOUT_ansi_84(
     _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,
-    _______,  KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_INS,   SYM_SHOT,  KC_NO,              _______,
-    KC_ENT,   KC_1,     KC_2,     KC_3,     KC_4,     KC_TAB,   KC_NO,    KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_LBRC,  KC_RBRC,  KC_NO,              _______,
-    _______,  SYM_A,    SYM_S,    SYM_D,    SYM_F,    KC_BSPC,  KC_DEL,   SYM_J,    SYM_K,    SYM_L,    SYM_SEMI, KC_QUOT,            _______,            _______,
-    _______,  KC_9,     KC_0,     KC_MINS,  KC_EQL,   KC_BSLS,  KC_SPC,   KC_GRV,   KC_COMM,  KC_DOT,   KC_SLSH,            _______,            _______,  _______,
+    _______,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11,   KC_F12,   KC_NO,              _______,
+    KC_ENT,   KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_MINS,  KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_INS,   SYM_SHOT, KC_NO,              _______,
+    _______,  SYM_A,    SYM_S,    SYM_D,    SYM_F,    KC_5,     KC_EQL,   SYM_J,    SYM_K,    SYM_L,    SYM_SEMI, KC_GRV,             _______,            _______,
+    _______,  SYM_UNDO, SYM_CUT,  SYM_COPY, SYM_PSTE, KC_BSPC,  KC_DEL,   KC_NO,    KC_NO,    KC_NO,    KC_BSLS,            _______,            _______,  _______,
     _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______)
 };
 
@@ -81,3 +81,4 @@ layer_state_t default_layer_state_set_user(layer_state_t state) {
     }
     return state;
 }
+

@@ -21,10 +21,10 @@
 #define HRM_SEMI RCTL_T(KC_SCLN)
 
 /* SYMBOL home-row mods keep the same physical modifier positions. */
-#define SYM_A LCTL_T(KC_5)
-#define SYM_S LALT_T(KC_6)
-#define SYM_D LGUI_T(KC_7)
-#define SYM_F LSFT_T(KC_8)
+#define SYM_A LCTL_T(KC_1)
+#define SYM_S LALT_T(KC_2)
+#define SYM_D LGUI_T(KC_3)
+#define SYM_F LSFT_T(KC_4)
 #define SYM_J RSFT_T(KC_LEFT)
 #define SYM_K RGUI_T(KC_DOWN)
 #define SYM_L RALT_T(KC_UP)
@@ -40,6 +40,10 @@
 
 enum custom_keycodes {
     SYM_SHOT = SAFE_RANGE,
+    SYM_UNDO,
+    SYM_CUT,
+    SYM_COPY,
+    SYM_PSTE,
 };
 
 static inline bool is_apple_os(void) {
