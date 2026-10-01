@@ -4,9 +4,9 @@
 #include "os_detection.h"
 
 #define SPC_SYM LT(SYMBOL, KC_SPC)
-#define CAPS_HK HYPR_T(KC_ESC)
-#define ENT_HK HYPR_T(KC_ENT)
-#define TAB_HYPR HYPR_T(KC_TAB)
+#define CAPS_HK LCAG_T(KC_ESC)
+#define ENT_HK LCAG_T(KC_ENT)
+#define TAB_HYPR LCAG_T(KC_TAB)
 #define FN_MAC MO(MAC_FN)
 #define FN_WIN MO(WIN_FN)
 
