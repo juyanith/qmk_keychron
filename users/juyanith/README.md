@@ -30,7 +30,8 @@ J/K/L/semicolon. QMK's `PERMISSIVE_HOLD` and a 200 ms tapping term provide
 release-sensitive roll behavior.
 
 Space taps Space and holds SYMBOL. Tab taps Tab and holds Hyper. Caps Lock taps
-Escape and Enter taps Enter; both hold Hyper. On SYMBOL, Tab sends Enter and
+Escape and Enter taps Enter; both hold CAG (Ctrl+Alt+GUI). Tab hold emits
+Hyper (Shift+CAG). On SYMBOL, Tab sends Enter and
 Caps/Enter remain transparent. The layer provides the number, navigation,
 delete, punctuation, and screenshot mappings documented in envmgr's
 `layers.txt`. Unassigned keys use `KC_NO`; function-row, arrow, navigation, and
