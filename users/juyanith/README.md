@@ -26,8 +26,8 @@ MAC_BASE, MAC_FN, WIN_BASE, WIN_FN, SYMBOL
 `MAC_BASE` uses native QMK home-row mod-taps. Their tap keys are the normal
 letters, while holds provide the Mac physical modifier arrangement: Control,
 Option, Command, Shift on A/S/D/F and Shift, Command, Option, Control on
-J/K/L/semicolon. QMK's `PERMISSIVE_HOLD` and a 200 ms tapping term provide
-release-sensitive roll behavior.
+J/K/L/semicolon. QMK's `PERMISSIVE_HOLD`, `CHORDAL_HOLD`, and a 200 ms tapping term provide
+release-sensitive roll behavior while treating same-hand rolls as taps.
 
 Space taps Space and holds SYMBOL. Tab taps Tab and holds Hyper. Caps Lock taps
 Escape and Enter taps Enter; both hold CAG (Ctrl+Alt+GUI). Tab hold emits
